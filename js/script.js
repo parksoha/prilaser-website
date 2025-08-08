@@ -8,16 +8,166 @@ document.addEventListener('DOMContentLoaded', function() {
     hamburger.addEventListener("click", () => {
       hamburger.classList.toggle("active");
       navMenu.classList.toggle("active");
+      
+      // ARIA 속성 업데이트
+      const isExpanded = hamburger.classList.contains("active");
+      hamburger.setAttribute("aria-expanded", isExpanded);
+      hamburger.setAttribute("aria-label", isExpanded ? "메뉴 닫기" : "메뉴 열기");
+      
+      // 모바일에서 메뉴 열릴 때 스크롤 방지
+      if (window.innerWidth <= 768) {
+        if (isExpanded) {
+          document.body.style.overflow = 'hidden';
+        } else {
+          document.body.style.overflow = '';
+        }
+      }
+    });
+
+    // 키보드 접근성 개선
+    hamburger.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        hamburger.classList.toggle("active");
+        navMenu.classList.toggle("active");
+        
+        // ARIA 속성 업데이트
+        const isExpanded = hamburger.classList.contains("active");
+        hamburger.setAttribute("aria-expanded", isExpanded);
+        hamburger.setAttribute("aria-label", isExpanded ? "메뉴 닫기" : "메뉴 열기");
+        
+        // 모바일에서 메뉴 열릴 때 스크롤 방지
+        if (window.innerWidth <= 768) {
+          if (isExpanded) {
+            document.body.style.overflow = 'hidden';
+          } else {
+            document.body.style.overflow = '';
+          }
+        }
+      }
     });
   }
 
-  // 네비게이션 링크 클릭 시 메뉴 닫기
-  document.querySelectorAll(".nav-link").forEach(n => n.addEventListener("click", () => {
-    if (hamburger && navMenu) {
-      hamburger.classList.remove("active");
-      navMenu.classList.remove("active");
+  // 모바일 서브메뉴 토글 (768px 이하에서만)
+  const navItems = document.querySelectorAll(".nav-item");
+  navItems.forEach(item => {
+    const submenu = item.querySelector(".submenu");
+    const navLink = item.querySelector(".nav-link");
+    
+    if (submenu && navLink) {
+      navLink.addEventListener("click", (e) => {
+        // 모바일에서만 서브메뉴 토글 (768px 이하)
+        if (window.innerWidth <= 768) {
+          e.preventDefault();
+          e.stopPropagation(); // 이벤트 전파 중단
+          
+          // 다른 서브메뉴들 닫기
+          navItems.forEach(otherItem => {
+            if (otherItem !== item) {
+              const otherSubmenu = otherItem.querySelector(".submenu");
+              if (otherSubmenu) {
+                otherSubmenu.classList.remove("active");
+              }
+            }
+          });
+          
+          // 현재 서브메뉴 토글
+          submenu.classList.toggle("active");
+        } else {
+          // PC에서는 클릭 시 서브메뉴가 고정되지 않도록
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      });
+
+      // 키보드 접근성 개선
+      navLink.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          if (window.innerWidth <= 768) {
+            submenu.classList.toggle("active");
+          }
+        }
+      });
     }
-  }));
+  });
+
+  // 서브메뉴 링크 클릭 시 메뉴 닫기 (모바일에서만)
+  document.querySelectorAll(".submenu a").forEach(link => {
+    link.addEventListener("click", () => {
+      if (window.innerWidth <= 768) {
+        if (hamburger && navMenu) {
+          hamburger.classList.remove("active");
+          navMenu.classList.remove("active");
+          // 스크롤 복원
+          document.body.style.overflow = '';
+        }
+        // 모든 서브메뉴 닫기
+        navItems.forEach(item => {
+          const submenu = item.querySelector(".submenu");
+          if (submenu) {
+            submenu.classList.remove("active");
+          }
+        });
+      }
+    });
+
+    // 키보드 접근성 개선
+    link.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        if (window.innerWidth <= 768) {
+          if (hamburger && navMenu) {
+            hamburger.classList.remove("active");
+            navMenu.classList.remove("active");
+            // 스크롤 복원
+            document.body.style.overflow = '';
+          }
+          // 모든 서브메뉴 닫기
+          navItems.forEach(item => {
+            const submenu = item.querySelector(".submenu");
+            if (submenu) {
+              submenu.classList.remove("active");
+            }
+          });
+        }
+      }
+    });
+  });
+
+  // 네비게이션 링크 클릭 시 메뉴 닫기 (서브메뉴가 없는 링크만)
+  document.querySelectorAll(".nav-link").forEach(navLink => {
+    navLink.addEventListener("click", (e) => {
+      // 서브메뉴가 있는 메뉴는 처리하지 않음
+      const parentItem = navLink.closest('.nav-item');
+      const hasSubmenu = parentItem && parentItem.querySelector('.submenu');
+      
+      if (!hasSubmenu && hamburger && navMenu) {
+        hamburger.classList.remove("active");
+        navMenu.classList.remove("active");
+        // 스크롤 복원
+        if (window.innerWidth <= 768) {
+          document.body.style.overflow = '';
+        }
+      }
+    });
+
+    // 키보드 접근성 개선
+    navLink.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        const parentItem = navLink.closest('.nav-item');
+        const hasSubmenu = parentItem && parentItem.querySelector('.submenu');
+        
+        if (!hasSubmenu && hamburger && navMenu) {
+          hamburger.classList.remove("active");
+          navMenu.classList.remove("active");
+          // 스크롤 복원
+          if (window.innerWidth <= 768) {
+            document.body.style.overflow = '';
+          }
+        }
+      }
+    });
+  });
 
   // 부드러운 스크롤 기능
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -41,15 +191,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // 폼 제출 처리 (폼이 존재할 경우에만)
-  const contactForm = document.getElementById("contactForm");
-  if (contactForm) {
-    contactForm.addEventListener("submit", function(e) {
-      e.preventDefault();
-      alert("문의가 접수되었습니다. 빠른 시일 내에 연락드리겠습니다.");
-      this.reset();
-    });
-  }
+
 
   // 인트로 애니메이션 처리
   const introTop = document.querySelector('.intro-top');
@@ -91,26 +233,15 @@ document.addEventListener('DOMContentLoaded', function() {
   // 배너 비디오 자동 재생 보장
   const bannerVideo = document.querySelector('.banner-video');
   if (bannerVideo) {
-    // 페이지 로드 즉시 비디오 재생 시도
-    setTimeout(function() {
-      bannerVideo.play().catch(function(error) {
-        console.log('비디오 자동 재생 실패:', error);
-      });
-    }, 100);
-    
-    // DOMContentLoaded 이벤트에서도 재생 시도
+    // 비디오 로드 후 재생 시도
     bannerVideo.addEventListener('loadeddata', function() {
       bannerVideo.play().catch(function(error) {
-        console.log('비디오 로드 후 재생 실패:', error);
+        // 자동 재생 실패 시 사용자 상호작용 후 재생
+        document.addEventListener('click', function() {
+          bannerVideo.play();
+        }, { once: true });
       });
     });
-    
-    // 사용자 상호작용 후 비디오 재생
-    document.addEventListener('click', function() {
-      bannerVideo.play().catch(function(error) {
-        console.log('비디오 재생 실패:', error);
-      });
-    }, { once: true });
   }
 
   // 푸터 서브메뉴 토글 기능 (간단한 버전)
