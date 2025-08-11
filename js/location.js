@@ -166,7 +166,11 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // 카카오맵 API 로드 확인 후 초기화
-  console.log('카카오 API 확인:', typeof kakao, kakao?.maps);
+  try {
+    console.log('카카오 API 확인:', typeof kakao, kakao?.maps);
+  } catch (error) {
+    console.log('카카오 API 로드되지 않음:', error.message);
+  }
   
   // GitHub Pages 환경인지 먼저 확인
   const isGitHubPages = window.location.hostname.includes('github.io');
@@ -176,28 +180,59 @@ document.addEventListener('DOMContentLoaded', function() {
   if (isGitHubPages || isLocalFile) {
     console.log('GitHub Pages 또는 로컬 파일 환경, 즉시 정적 지도 표시');
     initKakaoMap();
-  } else if (typeof kakao !== 'undefined' && kakao.maps) {
-    console.log('카카오맵 API 로드됨, 초기화 시작');
-    initKakaoMap();
   } else {
-    console.log('카카오맵 API 로드 대기 중...');
     // API 로드 대기
+    function checkKakaoAPI() {
+      try {
+        if (typeof kakao !== 'undefined' && kakao && kakao.maps) {
+          console.log('카카오맵 API 로드됨, 초기화 시작');
+          initKakaoMap();
+        } else {
+          console.log('카카오맵 API 로드 대기 중...');
+          setTimeout(checkKakaoAPI, 100);
+        }
+      } catch (error) {
+        console.log('카카오 API 체크 중 오류:', error.message);
+        setTimeout(checkKakaoAPI, 100);
+      }
+    }
+    
+    // 초기 체크 시작
+    checkKakaoAPI();
+    
+    // 페이지 로드 완료 후 최종 체크
     window.addEventListener('load', function() {
-      console.log('페이지 로드 완료, 카카오 API 재확인:', typeof kakao, kakao?.maps);
-      if (typeof kakao !== 'undefined' && kakao.maps) {
-        console.log('카카오맵 API 로드됨, 초기화 시작');
-        initKakaoMap();
-      } else {
-        console.error('카카오맵 API를 로드할 수 없습니다.');
-        // API 키가 유효하지 않은 경우 플레이스홀더 표시
+      try {
+        console.log('페이지 로드 완료, 카카오 API 재확인:', typeof kakao, kakao?.maps);
+        if (typeof kakao !== 'undefined' && kakao && kakao.maps) {
+          console.log('카카오맵 API 로드됨, 초기화 시작');
+          initKakaoMap();
+        } else {
+          console.error('카카오맵 API를 로드할 수 없습니다.');
+          // API 키가 유효하지 않은 경우 플레이스홀더 표시
+          const mapContainer = document.getElementById('map');
+          if (mapContainer) {
+            mapContainer.innerHTML = `
+              <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); color: #6c757d; text-align: center; padding: 2rem;">
+                <i class="fas fa-map" style="font-size: 4rem; margin-bottom: 1rem; color: #E53935;"></i>
+                <p style="font-size: 1.2rem; margin-bottom: 0.5rem; font-family: 'Noto Sans KR', sans-serif;">지도가 여기에 표시됩니다</p>
+                <p style="font-size: 0.9rem; color: #868e96; font-style: italic;">카카오맵 API 키를 설정해주세요</p>
+                <p style="font-size: 0.8rem; color: #dc3545; margin-top: 1rem;">API 키 오류 또는 네트워크 문제일 수 있습니다.</p>
+              </div>
+            `;
+          }
+        }
+      } catch (error) {
+        console.error('카카오 API 최종 체크 중 오류:', error.message);
+        // 오류 발생 시 정적 지도 표시
         const mapContainer = document.getElementById('map');
         if (mapContainer) {
           mapContainer.innerHTML = `
             <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); color: #6c757d; text-align: center; padding: 2rem;">
               <i class="fas fa-map" style="font-size: 4rem; margin-bottom: 1rem; color: #E53935;"></i>
               <p style="font-size: 1.2rem; margin-bottom: 0.5rem; font-family: 'Noto Sans KR', sans-serif;">지도가 여기에 표시됩니다</p>
-              <p style="font-size: 0.9rem; color: #868e96; font-style: italic;">카카오맵 API 키를 설정해주세요</p>
-              <p style="font-size: 0.8rem; color: #dc3545; margin-top: 1rem;">API 키 오류 또는 네트워크 문제일 수 있습니다.</p>
+              <p style="font-size: 0.9rem; color: #868e96; font-style: italic;">카카오맵 API 로드 중 오류가 발생했습니다</p>
+              <p style="font-size: 0.8rem; color: #dc3545; margin-top: 1rem;">${error.message}</p>
             </div>
           `;
         }
