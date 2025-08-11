@@ -97,16 +97,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const companyAddress = "경기도 화성시 향남읍 구문천리 929-7번지";
     console.log('검색할 주소:', companyAddress);
     
+    // 안전한 kakao API 사용
+    if (!isKakaoAPILoaded()) {
+      console.error('카카오 API가 로드되지 않았습니다.');
+      return;
+    }
+    
     // 주소-좌표 변환 객체 생성
-    const geocoder = new kakao.maps.services.Geocoder();
+    const geocoder = new window.kakao.maps.services.Geocoder();
     
     // 주소로 좌표 검색
     geocoder.addressSearch(companyAddress, function(result, status) {
       console.log('주소 검색 결과:', status, result);
       
       // 정상적으로 검색이 완료됐으면
-      if (status === kakao.maps.services.Status.OK) {
-        const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+      if (status === window.kakao.maps.services.Status.OK) {
+        const coords = new window.kakao.maps.LatLng(result[0].y, result[0].x);
         console.log('찾은 좌표:', coords);
         
         // 지도 옵션
@@ -116,11 +122,11 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         // 지도 생성
-        const map = new kakao.maps.Map(mapContainer, mapOption);
+        const map = new window.kakao.maps.Map(mapContainer, mapOption);
         console.log('지도 생성 완료');
 
         // 마커 생성
-        const marker = new kakao.maps.Marker({
+        const marker = new window.kakao.maps.Marker({
           position: coords
         });
 
@@ -129,17 +135,17 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('마커 표시 완료');
 
         // 인포윈도우 생성
-        const infowindow = new kakao.maps.InfoWindow({
+        const infowindow = new window.kakao.maps.InfoWindow({
           content: '<div style="padding:5px;font-size:12px;">PRILASER</div>'
         });
 
         // 마커 클릭 시 인포윈도우 표시
-        kakao.maps.event.addListener(marker, 'click', function() {
+        window.kakao.maps.event.addListener(marker, 'click', function() {
           infowindow.open(map, marker);
         });
 
         // 지도 로드 완료 시 애니메이션
-        kakao.maps.event.addListener(map, 'tilesloaded', function() {
+        window.kakao.maps.event.addListener(map, 'tilesloaded', function() {
           mapContainer.style.opacity = '1';
           mapContainer.style.transform = 'translateY(0)';
           console.log('지도 로드 완료');
@@ -148,15 +154,15 @@ document.addEventListener('DOMContentLoaded', function() {
       } else {
         // 주소 검색 실패 시 기본 좌표 사용
         console.warn('주소 검색 실패, 기본 좌표 사용');
-        const defaultCoords = new kakao.maps.LatLng(37.1234, 126.5678);
+        const defaultCoords = new window.kakao.maps.LatLng(37.1234, 126.5678);
         
         const mapOption = {
           center: defaultCoords,
           level: 3
         };
 
-        const map = new kakao.maps.Map(mapContainer, mapOption);
-        const marker = new kakao.maps.Marker({
+        const map = new window.kakao.maps.Map(mapContainer, mapOption);
+        const marker = new window.kakao.maps.Marker({
           position: defaultCoords
         });
         marker.setMap(map);
@@ -166,11 +172,16 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // 카카오맵 API 로드 확인 후 초기화
-  try {
-    console.log('카카오 API 확인:', typeof kakao, kakao?.maps);
-  } catch (error) {
-    console.log('카카오 API 로드되지 않음:', error.message);
+  // 안전한 API 체크 함수
+  function isKakaoAPILoaded() {
+    try {
+      return typeof window.kakao !== 'undefined' && window.kakao && window.kakao.maps;
+    } catch (error) {
+      return false;
+    }
   }
+  
+  console.log('카카오 API 확인:', isKakaoAPILoaded());
   
   // GitHub Pages 환경인지 먼저 확인
   const isGitHubPages = window.location.hostname.includes('github.io');
@@ -183,16 +194,11 @@ document.addEventListener('DOMContentLoaded', function() {
   } else {
     // API 로드 대기
     function checkKakaoAPI() {
-      try {
-        if (typeof kakao !== 'undefined' && kakao && kakao.maps) {
-          console.log('카카오맵 API 로드됨, 초기화 시작');
-          initKakaoMap();
-        } else {
-          console.log('카카오맵 API 로드 대기 중...');
-          setTimeout(checkKakaoAPI, 100);
-        }
-      } catch (error) {
-        console.log('카카오 API 체크 중 오류:', error.message);
+      if (isKakaoAPILoaded()) {
+        console.log('카카오맵 API 로드됨, 초기화 시작');
+        initKakaoMap();
+      } else {
+        console.log('카카오맵 API 로드 대기 중...');
         setTimeout(checkKakaoAPI, 100);
       }
     }
@@ -202,37 +208,20 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 페이지 로드 완료 후 최종 체크
     window.addEventListener('load', function() {
-      try {
-        console.log('페이지 로드 완료, 카카오 API 재확인:', typeof kakao, kakao?.maps);
-        if (typeof kakao !== 'undefined' && kakao && kakao.maps) {
-          console.log('카카오맵 API 로드됨, 초기화 시작');
-          initKakaoMap();
-        } else {
-          console.error('카카오맵 API를 로드할 수 없습니다.');
-          // API 키가 유효하지 않은 경우 플레이스홀더 표시
-          const mapContainer = document.getElementById('map');
-          if (mapContainer) {
-            mapContainer.innerHTML = `
-              <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); color: #6c757d; text-align: center; padding: 2rem;">
-                <i class="fas fa-map" style="font-size: 4rem; margin-bottom: 1rem; color: #E53935;"></i>
-                <p style="font-size: 1.2rem; margin-bottom: 0.5rem; font-family: 'Noto Sans KR', sans-serif;">지도가 여기에 표시됩니다</p>
-                <p style="font-size: 0.9rem; color: #868e96; font-style: italic;">카카오맵 API 키를 설정해주세요</p>
-                <p style="font-size: 0.8rem; color: #dc3545; margin-top: 1rem;">API 키 오류 또는 네트워크 문제일 수 있습니다.</p>
-              </div>
-            `;
-          }
-        }
-      } catch (error) {
-        console.error('카카오 API 최종 체크 중 오류:', error.message);
-        // 오류 발생 시 정적 지도 표시
+      if (isKakaoAPILoaded()) {
+        console.log('카카오맵 API 로드됨, 초기화 시작');
+        initKakaoMap();
+      } else {
+        console.error('카카오맵 API를 로드할 수 없습니다.');
+        // API 키가 유효하지 않은 경우 플레이스홀더 표시
         const mapContainer = document.getElementById('map');
         if (mapContainer) {
           mapContainer.innerHTML = `
             <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); color: #6c757d; text-align: center; padding: 2rem;">
               <i class="fas fa-map" style="font-size: 4rem; margin-bottom: 1rem; color: #E53935;"></i>
               <p style="font-size: 1.2rem; margin-bottom: 0.5rem; font-family: 'Noto Sans KR', sans-serif;">지도가 여기에 표시됩니다</p>
-              <p style="font-size: 0.9rem; color: #868e96; font-style: italic;">카카오맵 API 로드 중 오류가 발생했습니다</p>
-              <p style="font-size: 0.8rem; color: #dc3545; margin-top: 1rem;">${error.message}</p>
+              <p style="font-size: 0.9rem; color: #868e96; font-style: italic;">카카오맵 API 키를 설정해주세요</p>
+              <p style="font-size: 0.8rem; color: #dc3545; margin-top: 1rem;">API 키 오류 또는 네트워크 문제일 수 있습니다.</p>
             </div>
           `;
         }
