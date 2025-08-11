@@ -71,8 +71,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }
           });
           
-          // 현재 서브메뉴 토글
-          submenu.classList.toggle("active");
+          // 현재 서브메뉴 토글 (즉시 표시)
+          const isActive = submenu.classList.contains("active");
+          if (isActive) {
+            submenu.classList.remove("active");
+          } else {
+            submenu.classList.add("active");
+          }
         }
         // PC에서는 기본 동작 유지 (hover로 서브메뉴 표시)
       });
@@ -82,7 +87,12 @@ document.addEventListener('DOMContentLoaded', function() {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
           if (window.innerWidth <= 768) {
-            submenu.classList.toggle("active");
+            const isActive = submenu.classList.contains("active");
+            if (isActive) {
+              submenu.classList.remove("active");
+            } else {
+              submenu.classList.add("active");
+            }
           }
         }
       });
