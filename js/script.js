@@ -73,11 +73,8 @@ document.addEventListener('DOMContentLoaded', function() {
           
           // 현재 서브메뉴 토글
           submenu.classList.toggle("active");
-        } else {
-          // PC에서는 클릭 시 서브메뉴가 고정되지 않도록
-          e.preventDefault();
-          e.stopPropagation();
         }
+        // PC에서는 기본 동작 유지 (hover로 서브메뉴 표시)
       });
 
       // 키보드 접근성 개선
@@ -94,14 +91,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // 서브메뉴 링크 클릭 시 메뉴 닫기 (모바일에서만)
   document.querySelectorAll(".submenu a").forEach(link => {
-    link.addEventListener("click", () => {
+    link.addEventListener("click", (e) => {
       if (window.innerWidth <= 768) {
+        // 서브메뉴 링크 클릭 시 기본 동작 허용 (페이지 이동)
+        // 메뉴는 닫지만 하고 preventDefault는 하지 않음
+        
+        // 햄버거 메뉴 닫기
         if (hamburger && navMenu) {
           hamburger.classList.remove("active");
           navMenu.classList.remove("active");
           // 스크롤 복원
           document.body.style.overflow = '';
         }
+        
         // 모든 서브메뉴 닫기
         navItems.forEach(item => {
           const submenu = item.querySelector(".submenu");
@@ -116,6 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
     link.addEventListener("keydown", (e) => {
       if (e.key === "Enter") {
         if (window.innerWidth <= 768) {
+          // Enter 키로도 페이지 이동 허용
           if (hamburger && navMenu) {
             hamburger.classList.remove("active");
             navMenu.classList.remove("active");

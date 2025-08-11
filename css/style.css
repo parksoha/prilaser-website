@@ -125,12 +125,16 @@
     margin-bottom: 1rem;
     animation: fadeInUp 1s ease-out;
     font-family: 'Noto Sans KR', sans-serif;
+    word-break: keep-all;
+    overflow-wrap: break-word;
   }
 
   .banner-content p {
     font-size: 1rem;
     margin-bottom: 2rem;
     animation: fadeInUp 1s ease-out 0.3s both;
+    word-break: keep-all;
+    overflow-wrap: break-word;
   }
 
   .banner-content .cta-btn {
@@ -145,6 +149,9 @@
     transition: all 0.3s ease;
     animation: fadeInUp 1s ease-out 0.6s both;
     font-family: 'Noto Sans KR', sans-serif;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    white-space: normal;
   }
 
   .banner-content .cta-btn:hover {
@@ -220,6 +227,8 @@
     margin-bottom: 1.5rem;
     color: #0A2A43;
     font-family: 'Noto Sans KR', sans-serif;
+    word-break: keep-all;
+    overflow-wrap: break-word;
   }
 
   .about-text p {
@@ -227,6 +236,8 @@
     line-height: 1.8;
     color: #555;
     margin-bottom: 1.5rem;
+    word-break: keep-all;
+    overflow-wrap: break-word;
   }
 
   .about-btn {
@@ -240,6 +251,9 @@
     transition: all 0.3s ease;
     margin-top: 1.5rem;
     font-family: 'Noto Sans KR', sans-serif;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    white-space: normal;
   }
 
   .about-btn:hover {
@@ -321,6 +335,8 @@
     text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
     color: white;
     font-family: 'Noto Sans KR', sans-serif;
+    word-break: keep-all;
+    overflow-wrap: break-word;
   }
 
   .card-content p {
@@ -330,6 +346,8 @@
     color: white;
     font-weight: 400;
     font-family: 'Noto Sans KR', sans-serif;
+    word-break: keep-all;
+    overflow-wrap: break-word;
   }
 
 
@@ -422,6 +440,8 @@
     margin-bottom: 0.5rem;
     color: #0A2A43;
     font-family: 'Noto Sans KR', sans-serif;
+    word-break: keep-all;
+    overflow-wrap: break-word;
   }
 
 
@@ -502,6 +522,8 @@
     margin-bottom: 0.5rem;
     color: white;
     font-family: 'Noto Sans KR', sans-serif;
+    word-break: keep-all;
+    overflow-wrap: break-word;
   }
 
   .card-content p {
@@ -510,6 +532,8 @@
     color: rgba(255, 255, 255, 0.9);
     margin-bottom: 1rem;
     font-family: 'Noto Sans KR', sans-serif;
+    word-break: keep-all;
+    overflow-wrap: break-word;
   }
 
   .card-icon {
@@ -545,12 +569,16 @@
     /* About Section */
     .about-section {
       padding: 4rem 0;
+      width: 100%;
+      overflow-x: hidden;
     }
 
     .about-content {
       flex-direction: column;
       gap: 3rem;
       text-align: center;
+      width: 100%;
+      padding: 0 1rem;
     }
 
     .about-image {
@@ -560,6 +588,7 @@
       justify-content: center;
       align-items: center;
       margin-right: 0 !important;
+      width: 100%;
     }
 
     .about-image img {
@@ -572,6 +601,7 @@
 
     .about-text {
       text-align: center;
+      width: 100%;
     }
 
     .about-header {
@@ -598,6 +628,16 @@
     }
 
     /* Banner */
+    .banner {
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    .banner-content {
+      width: 100%;
+      padding: 0 1rem;
+    }
+
     .banner-content h1 {
       font-size: 1.4rem;
     }
@@ -607,12 +647,19 @@
     }
 
     /* Services */
+    .services {
+      width: 100%;
+      overflow-x: hidden;
+      padding: 4rem 1rem 140px 1rem;
+    }
+
     .services h2 {
       font-size: 1.5rem;
     }
 
     .service-cards {
       grid-template-columns: 1fr;
+      width: 100%;
     }
 
     .card-content h3 {
@@ -624,8 +671,18 @@
     }
 
     /* Strength */
+    .strength {
+      width: 100%;
+      overflow-x: hidden;
+      padding: 4rem 1rem 140px 1rem;
+    }
+
     .strength h2 {
       font-size: 1.5rem;
+    }
+
+    .strength-items {
+      width: 100%;
     }
 
     .strength-item h3 {
@@ -637,15 +694,37 @@
     }
 
     /* Action Cards */
+    .action-cards {
+      width: 100%;
+      overflow-x: hidden;
+      padding: 4rem 0 6rem 0;
+    }
+
+    .action-cards-grid {
+      width: 100%;
+      padding: 0 1rem;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .action-card {
+      height: 180px;
+      min-height: 180px;
+    }
+
+    .action-cards .card-content {
+      padding: 1.5rem;
+    }
+
     .action-cards .card-content h3 {
       font-size: 1.2rem;
+      margin-bottom: 0.5rem;
     }
 
     .action-cards .card-content p {
       font-size: 0.85rem;
+      margin-bottom: 1rem;
     }
-
-
   }
 
   @media (max-width: 480px) {
@@ -659,19 +738,23 @@
     }
 
     .nav-container {
-      padding: 0 1.5rem;
+      padding: 0 1rem;
     }
 
     .container {
-      padding: 0 1.5rem;
+      padding: 0 1rem;
     }
 
     .services {
       padding: 60px 1rem;
+      width: 100%;
+      overflow-x: hidden;
     }
 
     .strength {
       padding: 2rem 1rem;
+      width: 100%;
+      overflow-x: hidden;
     }
 
     /* Typography */
@@ -712,6 +795,7 @@
       align-items: center;
       margin-right: 0 !important;
       min-width: auto;
+      width: 100%;
     }
 
     .about-image img {
@@ -754,7 +838,19 @@
       font-size: 0.8rem;
     }
 
+    /* Action Cards 추가 조정 */
+    .action-cards {
+      padding: 3rem 0 4rem 0;
+    }
 
+    .action-card {
+      height: 160px;
+      min-height: 160px;
+    }
+
+    .action-cards .card-content {
+      padding: 1rem;
+    }
 
     /* Footer */
     .footer-nav .footer-submenu {

@@ -11,12 +11,23 @@ body {
   font-family: 'Noto Sans KR', sans-serif;
   line-height: 1.6;
   color: #333;
+  overflow-x: hidden;
+  width: 100%;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 .container {
   max-width: 1300px;
   margin: 0 auto;
   padding: 0 2rem;
+  width: 100%;
+}
+
+/* 텍스트 요소들에 한글 줄바꿈 최적화 */
+h1, h2, h3, h4, h5, h6, p, span, div, a, button, li {
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 /* 네비게이션 스타일 */
@@ -526,28 +537,28 @@ body {
 
   .footer-nav ul {
     display: flex;
-    flex-direction: row;
-    gap: 1rem;
+    flex-direction: column;
+    gap: 0.5rem;
     align-items: flex-start;
     flex-wrap: wrap;
   }
 
   .footer-nav .footer-submenu-item {
-    width: auto;
+    width: 100%;
   }
 
   .footer-nav .footer-submenu {
-    position: absolute;
+    position: static;
     display: none;
-    background: rgba(0, 0, 0, 0.8);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background: none;
+    box-shadow: none;
     margin-top: 0.3rem;
-    padding: 0.5rem 0;
-    border-radius: 4px;
-    min-width: 120px;
+    padding-left: 1rem;
+    border-radius: 0;
+    min-width: auto;
     z-index: 9999;
-    left: 100%;
-    top: 0;
+    left: auto;
+    top: auto;
   }
 
   .footer-nav .footer-submenu.active {
@@ -565,6 +576,14 @@ body {
   .footer-social {
     margin-top: 0.5rem;
     justify-content: flex-start;
+  }
+
+  .nav-container {
+    padding: 0 1rem;
+  }
+
+  .container {
+    padding: 0 1rem;
   }
 }
 
