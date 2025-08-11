@@ -1,0 +1,226 @@
+/* ===== 주요 고객사 페이지 전용 스타일 ===== */
+
+/* 서브페이지 배너 */
+.page-banner {
+  position: relative;
+  height: 60vh;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  overflow: hidden;
+}
+
+.page-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('../img/banner01.mp4') no-repeat center/cover;
+  opacity: 0.3;
+  z-index: 1;
+}
+
+.banner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+.banner-content {
+  position: relative;
+  z-index: 3;
+  max-width: 800px;
+  padding: 0 2rem;
+}
+
+.about-prilaser-label {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #8B0000;
+  margin-bottom: 1rem;
+  font-family: 'Noto Sans KR', sans-serif;
+  letter-spacing: 2px;
+}
+
+.banner-content h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: white;
+  font-family: 'Noto Sans KR', sans-serif;
+  animation: fadeInUp 1s ease-out;
+}
+
+.banner-content p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: 'Noto Sans KR', sans-serif;
+  animation: fadeInUp 1s ease-out 0.3s both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 페이지 준비 중 섹션 */
+.coming-soon-section {
+  padding: 8rem 2rem 140px 2rem;
+  background: white;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+}
+
+.coming-soon-content {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.coming-soon-icon {
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(135deg, #8B0000 0%, #dc3545 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 3rem;
+  animation: pulse 2s infinite;
+  box-shadow: 0 10px 30px rgba(139, 0, 0, 0.3);
+}
+
+.coming-soon-icon i {
+  font-size: 3rem;
+  color: white;
+}
+
+.coming-soon-content h2 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 1.5rem;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.coming-soon-content p {
+  font-size: 1.2rem;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 0.8rem;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.coming-soon-content p:last-child {
+  font-size: 1.1rem;
+  color: #888;
+  font-style: italic;
+  margin-bottom: 0;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(139, 0, 0, 0.7);
+  }
+  70% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 20px rgba(139, 0, 0, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(139, 0, 0, 0);
+  }
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .page-banner {
+    height: 50vh;
+  }
+  
+  .banner-content h1 {
+    font-size: 2.5rem;
+  }
+  
+  .banner-content p {
+    font-size: 1rem;
+  }
+  
+  .coming-soon-section {
+    padding: 6rem 1rem 100px 1rem;
+    min-height: 50vh;
+  }
+  
+  .coming-soon-icon {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 2rem;
+  }
+  
+  .coming-soon-icon i {
+    font-size: 2.5rem;
+  }
+  
+  .coming-soon-content h2 {
+    font-size: 2.2rem;
+  }
+  
+  .coming-soon-content p {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-banner {
+    height: 40vh;
+  }
+  
+  .banner-content h1 {
+    font-size: 2rem;
+  }
+  
+  .banner-content p {
+    font-size: 0.9rem;
+  }
+  
+  .coming-soon-section {
+    padding: 4rem 1rem 80px 1rem;
+  }
+  
+  .coming-soon-icon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1.5rem;
+  }
+  
+  .coming-soon-icon i {
+    font-size: 2rem;
+  }
+  
+  .coming-soon-content h2 {
+    font-size: 1.8rem;
+  }
+  
+  .coming-soon-content p {
+    font-size: 1rem;
+  }
+}

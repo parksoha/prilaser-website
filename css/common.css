@@ -22,6 +22,7 @@ body {
   margin: 0 auto;
   padding: 0 2rem;
   width: 100%;
+  overflow-x: hidden;
 }
 
 /* 텍스트 요소들에 한글 줄바꿈 최적화 */
@@ -55,6 +56,8 @@ h1, h2, h3, h4, h5, h6, p, span, div, a, button, li {
   align-items: center;
   padding: 0 2rem;
   height: 70px;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .nav-logo a {
@@ -598,10 +601,14 @@ h1, h2, h3, h4, h5, h6, p, span, div, a, button, li {
 
   .nav-container {
     padding: 0 1rem;
+    width: 100%;
+    overflow-x: hidden;
   }
 
   .container {
     padding: 0 1rem;
+    width: 100%;
+    overflow-x: hidden;
   }
 
   .footer-nav .footer-submenu {

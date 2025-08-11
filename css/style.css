@@ -125,16 +125,12 @@
     margin-bottom: 1rem;
     animation: fadeInUp 1s ease-out;
     font-family: 'Noto Sans KR', sans-serif;
-    word-break: keep-all;
-    overflow-wrap: break-word;
   }
 
   .banner-content p {
     font-size: 1rem;
     margin-bottom: 2rem;
     animation: fadeInUp 1s ease-out 0.3s both;
-    word-break: keep-all;
-    overflow-wrap: break-word;
   }
 
   .banner-content .cta-btn {
@@ -149,9 +145,6 @@
     transition: all 0.3s ease;
     animation: fadeInUp 1s ease-out 0.6s both;
     font-family: 'Noto Sans KR', sans-serif;
-    word-break: keep-all;
-    overflow-wrap: break-word;
-    white-space: normal;
   }
 
   .banner-content .cta-btn:hover {
@@ -227,8 +220,6 @@
     margin-bottom: 1.5rem;
     color: #0A2A43;
     font-family: 'Noto Sans KR', sans-serif;
-    word-break: keep-all;
-    overflow-wrap: break-word;
   }
 
   .about-text p {
@@ -236,8 +227,6 @@
     line-height: 1.8;
     color: #555;
     margin-bottom: 1.5rem;
-    word-break: keep-all;
-    overflow-wrap: break-word;
   }
 
   .about-btn {
@@ -251,9 +240,6 @@
     transition: all 0.3s ease;
     margin-top: 1.5rem;
     font-family: 'Noto Sans KR', sans-serif;
-    word-break: keep-all;
-    overflow-wrap: break-word;
-    white-space: normal;
   }
 
   .about-btn:hover {
@@ -267,15 +253,15 @@
 
 
   .services {
-    padding: 4rem 2rem 140px 2rem;
+    padding: 6rem 2rem 160px 2rem;
     background: white;
   }
 
   .services h2 {
     text-align: center;
     font-size: 2.8rem;
-    margin-bottom: 4rem;
-    color: #0A2A43;
+    margin-bottom: 6rem;
+    color: #000000;
     font-family: 'Noto Sans KR', sans-serif;
   }
 
@@ -328,7 +314,7 @@
     align-items: center;
   }
 
-  .card-content h3 {
+  .service-cards .card-content h3 {
     font-size: 1.3rem;
     font-weight: 700;
     margin-bottom: 0.8rem;
@@ -339,7 +325,18 @@
     overflow-wrap: break-word;
   }
 
-  .card-content p {
+  .action-cards .card-content h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-family: 'Noto Sans KR', sans-serif;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    text-shadow: none;
+  }
+
+  .service-cards .card-content p {
     font-size: 0.9rem;
     line-height: 1.5;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
@@ -348,6 +345,15 @@
     font-family: 'Noto Sans KR', sans-serif;
     word-break: keep-all;
     overflow-wrap: break-word;
+  }
+
+  .action-cards .card-content p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #666;
+    margin-bottom: 1rem;
+    font-family: 'Noto Sans KR', sans-serif;
+    text-shadow: none;
   }
 
 
@@ -440,25 +446,26 @@
     margin-bottom: 0.5rem;
     color: #0A2A43;
     font-family: 'Noto Sans KR', sans-serif;
-    word-break: keep-all;
-    overflow-wrap: break-word;
   }
 
 
 
   /* ===== 주요실적 & 상담의뢰 카드 섹션 ===== */
   .action-cards {
-    background: white;
+    background: #f8f9fa;
     padding: 140px 0 180px 0;
+    width: 100%;
+    overflow-x: hidden;
   }
 
   .action-cards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     max-width: 1300px;
     margin: 0 auto;
     padding: 0 2rem;
+    width: 100%;
   }
 
   .action-card {
@@ -510,37 +517,36 @@
     right: 0;
     bottom: 0;
     padding: 2rem;
-    color: white;
+    color: #333;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    background: rgba(255, 255, 255, 0.95);
   }
 
   .card-content h3 {
     font-size: 1.3rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
-    color: white;
+    color: #333;
     font-family: 'Noto Sans KR', sans-serif;
-    word-break: keep-all;
-    overflow-wrap: break-word;
+    text-shadow: none;
   }
 
   .card-content p {
     font-size: 0.9rem;
     line-height: 1.5;
-    color: rgba(255, 255, 255, 0.9);
+    color: #666;
     margin-bottom: 1rem;
     font-family: 'Noto Sans KR', sans-serif;
-    word-break: keep-all;
-    overflow-wrap: break-word;
+    text-shadow: none;
   }
 
   .card-icon {
     align-self: flex-end;
     width: 40px;
     height: 40px;
-    background: rgba(255, 255, 255, 0.2);
+    background: #cccccc;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -550,7 +556,7 @@
 
   .card-icon i {
     font-size: 1rem;
-    color: white;
+    color: #333;
     font-family: "Font Awesome 6 Free" !important;
     font-weight: 900 !important;
   }
@@ -568,7 +574,7 @@
   @media (max-width: 768px) {
     /* About Section */
     .about-section {
-      padding: 4rem 0;
+      padding: 4rem 1rem;
       width: 100%;
       overflow-x: hidden;
     }
@@ -578,7 +584,6 @@
       gap: 3rem;
       text-align: center;
       width: 100%;
-      padding: 0 1rem;
     }
 
     .about-image {
@@ -588,7 +593,6 @@
       justify-content: center;
       align-items: center;
       margin-right: 0 !important;
-      width: 100%;
     }
 
     .about-image img {
@@ -633,11 +637,6 @@
       overflow-x: hidden;
     }
 
-    .banner-content {
-      width: 100%;
-      padding: 0 1rem;
-    }
-
     .banner-content h1 {
       font-size: 1.4rem;
     }
@@ -650,7 +649,7 @@
     .services {
       width: 100%;
       overflow-x: hidden;
-      padding: 4rem 1rem 140px 1rem;
+      padding: 4rem 1rem;
     }
 
     .services h2 {
@@ -674,15 +673,11 @@
     .strength {
       width: 100%;
       overflow-x: hidden;
-      padding: 4rem 1rem 140px 1rem;
+      padding: 4rem 1rem;
     }
 
     .strength h2 {
       font-size: 1.5rem;
-    }
-
-    .strength-items {
-      width: 100%;
     }
 
     .strength-item h3 {
@@ -697,19 +692,19 @@
     .action-cards {
       width: 100%;
       overflow-x: hidden;
-      padding: 4rem 0 6rem 0;
+      padding: 4rem 1rem;
     }
 
     .action-cards-grid {
-      width: 100%;
-      padding: 0 1rem;
       grid-template-columns: 1fr;
       gap: 1.5rem;
+      padding: 0 1rem;
+      width: 100%;
     }
 
     .action-card {
       height: 180px;
-      min-height: 180px;
+      width: 100%;
     }
 
     .action-cards .card-content {
@@ -718,12 +713,10 @@
 
     .action-cards .card-content h3 {
       font-size: 1.2rem;
-      margin-bottom: 0.5rem;
     }
 
     .action-cards .card-content p {
       font-size: 0.85rem;
-      margin-bottom: 1rem;
     }
   }
 
@@ -739,10 +732,20 @@
 
     .nav-container {
       padding: 0 1rem;
+      width: 100%;
+      overflow-x: hidden;
     }
 
     .container {
       padding: 0 1rem;
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    .about-section {
+      width: 100%;
+      overflow-x: hidden;
+      padding: 3rem 1rem;
     }
 
     .services {
@@ -753,6 +756,33 @@
 
     .strength {
       padding: 2rem 1rem;
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    .action-cards {
+      width: 100%;
+      overflow-x: hidden;
+      padding: 3rem 1rem;
+    }
+
+    .action-cards-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      padding: 0 0.5rem;
+      width: 100%;
+    }
+
+    .action-card {
+      height: 160px;
+      width: 100%;
+    }
+
+    .action-cards .card-content {
+      padding: 1rem;
+    }
+
+    .banner {
       width: 100%;
       overflow-x: hidden;
     }
@@ -795,7 +825,6 @@
       align-items: center;
       margin-right: 0 !important;
       min-width: auto;
-      width: 100%;
     }
 
     .about-image img {
@@ -838,19 +867,7 @@
       font-size: 0.8rem;
     }
 
-    /* Action Cards 추가 조정 */
-    .action-cards {
-      padding: 3rem 0 4rem 0;
-    }
 
-    .action-card {
-      height: 160px;
-      min-height: 160px;
-    }
-
-    .action-cards .card-content {
-      padding: 1rem;
-    }
 
     /* Footer */
     .footer-nav .footer-submenu {
@@ -864,6 +881,155 @@
     .footer-nav .footer-submenu a {
       font-size: 0.7rem;
       padding: 0.2rem 0;
+    }
+  }
+
+  /* ===== EQUIPMENT & TECHNOLOGY 섹션 (별도 클래스) ===== */
+  .equipment-tech {
+    padding: 8rem 2rem 180px 2rem;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    color: white;
+  }
+
+  .equipment-tech h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: white;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 700;
+    letter-spacing: 2px;
+  }
+
+  .equipment-description {
+    text-align: center;
+    font-size: 1rem;
+    margin-bottom: 6rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+
+  .equipment-cards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+  }
+
+  .equipment-card {
+    background: white;
+    border-radius: 8px;
+    padding: 1.2rem;
+    text-align: center;
+    position: relative;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    min-width: 140px;
+    flex: 0 0 auto;
+  }
+
+  .equipment-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    background: #dc3545;
+  }
+
+  .equipment-card:hover .equipment-step-number {
+    color: white;
+  }
+
+  .equipment-card:hover .equipment-card-icon {
+    background: white;
+    border-color: white;
+  }
+
+  .equipment-card:hover .equipment-card-icon i {
+    color: #dc3545;
+  }
+
+  .equipment-card:hover h3 {
+    color: white;
+  }
+
+  .equipment-step-number {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #dc3545;
+    margin-bottom: 0.5rem;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+
+  .equipment-card-icon {
+    width: 55px;
+    height: 55px;
+    margin: 0 auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #333;
+    border-radius: 50%;
+    position: relative;
+  }
+
+  .equipment-card-icon i {
+    font-size: 1.3rem;
+    color: #dc3545;
+  }
+
+  .equipment-card h3 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+    font-family: 'Noto Sans KR', sans-serif;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  /* 화살표 */
+  .equipment-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #dc3545;
+    font-size: 1rem;
+    margin: 0 0.3rem;
+  }
+
+
+
+  /* EQUIPMENT & TECHNOLOGY 반응형 */
+  @media (max-width: 768px) {
+    .equipment-tech {
+      padding: 3rem 1rem 100px 1rem;
+      width: 100%;
+      overflow-x: hidden;
+    }
+    
+    .equipment-tech h2 {
+      font-size: 2rem;
+    }
+    
+    .equipment-cards {
+      flex-direction: column;
+      gap: 0.5rem;
+      width: 100%;
+    }
+    
+    .equipment-card {
+      min-width: auto;
+      width: 100%;
+    }
+    
+    .equipment-card h3 {
+      font-size: 0.8rem;
+    }
+    
+    .equipment-arrow {
+      transform: rotate(90deg);
     }
   }
 
