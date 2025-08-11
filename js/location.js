@@ -42,6 +42,57 @@ document.addEventListener('DOMContentLoaded', function() {
       return;
     }
 
+    // GitHub Pages 환경인지 확인 (더 정확한 감지)
+    const isGitHubPages = window.location.hostname.includes('github.io');
+    const isLocalFile = window.location.protocol === 'file:';
+    const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    
+    console.log('환경 확인:', {
+      hostname: window.location.hostname,
+      protocol: window.location.protocol,
+      isGitHubPages: isGitHubPages,
+      isLocalFile: isLocalFile,
+      isLocalhost: isLocalhost
+    });
+
+    // GitHub Pages 또는 로컬 파일 환경에서는 정적 지도 표시
+    if (isGitHubPages || isLocalFile) {
+      console.log('GitHub Pages 또는 로컬 파일 환경 감지, 정적 지도 이미지 표시');
+      mapContainer.innerHTML = `
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); color: #6c757d; text-align: center; padding: 2rem;">
+          <i class="fas fa-map" style="font-size: 4rem; margin-bottom: 1rem; color: #E53935;"></i>
+          <p style="font-size: 1.2rem; margin-bottom: 0.5rem; font-family: 'Noto Sans KR', sans-serif;">지도가 여기에 표시됩니다</p>
+          <p style="font-size: 0.9rem; color: #868e96; font-style: italic;">카카오맵 API 키 설정이 필요합니다</p>
+          <p style="font-size: 0.8rem; color: #dc3545; margin-top: 1rem;">GitHub Pages 도메인을 API 키에 추가해주세요</p>
+          <div style="margin-top: 1rem; padding: 1rem; background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+            <h4 style="margin: 0 0 0.5rem 0; color: #0A2A43;">PRILASER 위치</h4>
+            <p style="margin: 0.3rem 0; font-size: 0.9rem;">경기도 화성시 향남읍 구문천리 929-7번지</p>
+            <p style="margin: 0.3rem 0; font-size: 0.9rem;">T. 031-123-4567</p>
+          </div>
+        </div>
+      `;
+      return;
+    }
+
+    // 로컬호스트에서만 카카오맵 API 사용
+    if (!isLocalhost) {
+      console.log('로컬호스트가 아닌 환경, 정적 지도 표시');
+      mapContainer.innerHTML = `
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); color: #6c757d; text-align: center; padding: 2rem;">
+          <i class="fas fa-map" style="font-size: 4rem; margin-bottom: 1rem; color: #E53935;"></i>
+          <p style="font-size: 1.2rem; margin-bottom: 0.5rem; font-family: 'Noto Sans KR', sans-serif;">지도가 여기에 표시됩니다</p>
+          <p style="font-size: 0.9rem; color: #868e96; font-style: italic;">로컬 서버에서 실행해주세요</p>
+          <p style="font-size: 0.8rem; color: #dc3545; margin-top: 1rem;">http://localhost:8000/sub/location.html</p>
+          <div style="margin-top: 1rem; padding: 1rem; background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+            <h4 style="margin: 0 0 0.5rem 0; color: #0A2A43;">PRILASER 위치</h4>
+            <p style="margin: 0.3rem 0; font-size: 0.9rem;">경기도 화성시 향남읍 구문천리 929-7번지</p>
+            <p style="margin: 0.3rem 0; font-size: 0.9rem;">T. 031-123-4567</p>
+          </div>
+        </div>
+      `;
+      return;
+    }
+
     // PRILASER 실제 주소
     const companyAddress = "경기도 화성시 향남읍 구문천리 929-7번지";
     console.log('검색할 주소:', companyAddress);
@@ -117,7 +168,15 @@ document.addEventListener('DOMContentLoaded', function() {
   // 카카오맵 API 로드 확인 후 초기화
   console.log('카카오 API 확인:', typeof kakao, kakao?.maps);
   
-  if (typeof kakao !== 'undefined' && kakao.maps) {
+  // GitHub Pages 환경인지 먼저 확인
+  const isGitHubPages = window.location.hostname.includes('github.io');
+  const isLocalFile = window.location.protocol === 'file:';
+  const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+  
+  if (isGitHubPages || isLocalFile) {
+    console.log('GitHub Pages 또는 로컬 파일 환경, 즉시 정적 지도 표시');
+    initKakaoMap();
+  } else if (typeof kakao !== 'undefined' && kakao.maps) {
     console.log('카카오맵 API 로드됨, 초기화 시작');
     initKakaoMap();
   } else {
