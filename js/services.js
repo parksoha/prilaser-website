@@ -1,5 +1,38 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+  // 배너 애니메이션 (비전 페이지와 동일)
+  const pageHeader = document.querySelector('.page-header');
+  if (pageHeader) {
+    const headerH1 = pageHeader.querySelector('h1');
+    const headerP = pageHeader.querySelector('p');
+    
+    if (headerH1) {
+      headerH1.style.opacity = '0';
+      headerH1.style.transform = 'translateY(30px)';
+      headerH1.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
+    }
+    
+    if (headerP) {
+      headerP.style.opacity = '0';
+      headerP.style.transform = 'translateY(30px)';
+      headerP.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
+    }
+    
+    // 페이지 로드 후 애니메이션 시작
+    setTimeout(() => {
+      if (headerH1) {
+        headerH1.style.opacity = '1';
+        headerH1.style.transform = 'translateY(0)';
+      }
+      setTimeout(() => {
+        if (headerP) {
+          headerP.style.opacity = '1';
+          headerP.style.transform = 'translateY(0)';
+        }
+      }, 300);
+    }, 500);
+  }
+
   // 네비게이션 요소들
   const hamburger = document.querySelector('.hamburger');
   const navMenu = document.querySelector('.nav-menu');

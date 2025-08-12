@@ -400,7 +400,9 @@ body::-webkit-scrollbar {
 }
 
 /* 반응형 디자인 */
-@media (max-width: 768px) {
+
+/* 태블릿 (768px ~ 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
     .page-header h1 {
         font-size: 2.5rem;
     }
@@ -432,10 +434,78 @@ body::-webkit-scrollbar {
     }
 
     .timeline-dot {
-        left: -17px !important;
+        left: -8px !important;
         transform: none !important;
-        width: 14px !important;
-        height: 14px !important;
+        width: 16px !important;
+        height: 16px !important;
+    }
+
+    .timeline-dot.active {
+        transform: none !important;
+    }
+
+    .timeline-content::before {
+        left: -40px !important;
+        right: auto !important;
+        border-right-color: white !important;
+        border-left-color: transparent !important;
+        border-right-width: 20px !important;
+    }
+
+    .timeline-content {
+        padding: 1.5rem;
+    }
+
+    .timeline-content h3 {
+        font-size: 1.3rem;
+    }
+
+    .timeline-content p {
+        font-size: 0.9rem;
+    }
+
+    .timeline-content li {
+        font-size: 0.8rem;
+    }
+}
+
+/* 모바일 (768px 이하) */
+@media (max-width: 767px) {
+    .page-header h1 {
+        font-size: 2.5rem;
+    }
+
+    .page-header p {
+        font-size: 1rem;
+    }
+
+    .history-section {
+        padding: 60px 0;
+    }
+
+    .history-timeline::before {
+        left: 20px;
+        transform: none;
+        width: 2px;
+    }
+
+    .history-timeline::after {
+        left: 20px;
+        transform: none;
+        width: 3px;
+    }
+
+    .timeline-item {
+        padding-left: 40px !important;
+        padding-right: 0 !important;
+        text-align: left !important;
+    }
+
+    .timeline-dot {
+        left: -8px !important;
+        transform: none !important;
+        width: 16px !important;
+        height: 16px !important;
     }
 
     .timeline-dot.active {

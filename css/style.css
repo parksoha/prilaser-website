@@ -785,6 +785,31 @@
     }
 
     /* Action Cards */
+    .action-cards {
+      padding: 80px 0 120px 0;
+    }
+
+    .action-cards-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      padding: 0 1rem;
+    }
+
+    .action-card {
+      height: 180px;
+    }
+
+    .card-icon {
+      width: 35px;
+      height: 35px;
+      min-width: 35px;
+      min-height: 35px;
+    }
+
+    .card-icon i {
+      font-size: 0.9rem;
+    }
+
     .action-cards .card-content h3 {
       font-size: 1.2rem;
     }
@@ -820,6 +845,32 @@
 
     .strength {
       padding: 2rem 1rem;
+    }
+
+    /* Action Cards */
+    .action-cards {
+      padding: 60px 0 100px 0;
+    }
+
+    .action-cards-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      padding: 0 1rem;
+    }
+
+    .action-card {
+      height: 160px;
+    }
+
+    .card-icon {
+      width: 32px;
+      height: 32px;
+      min-width: 32px;
+      min-height: 32px;
+    }
+
+    .card-icon i {
+      font-size: 0.85rem;
     }
 
     /* Typography */
