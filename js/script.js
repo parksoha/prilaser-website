@@ -213,22 +213,22 @@ document.addEventListener('DOMContentLoaded', function() {
   const introAnimation = document.querySelector('.intro-animation');
 
   if (introTop && introBottom && introCenterLine && introAnimation) {
-    // 페이지 로드 후 2초 뒤에 위아래 갈라짐 (선 애니메이션 1초 완료 후)
+    // 페이지 로드 후 1초 뒤에 위아래 갈라짐 (선 애니메이션 완료 후 바로)
     setTimeout(function() {
       introTop.classList.add('height0');
       introBottom.classList.add('height0');
       introCenterLine.style.opacity = '0'; // 선도 함께 사라지도록
-    }, 2000);
+    }, 1000);
 
-    // 페이지 로드 후 3초 뒤에 오버레이를 어둡게 (갈라짐 완료 후)
+    // 페이지 로드 후 2초 뒤에 오버레이를 어둡게 (갈라짐 완료 후)
     setTimeout(function() {
       const bannerOverlay = document.querySelector('.banner-overlay');
       if (bannerOverlay) {
         bannerOverlay.classList.add('dark');
       }
-    }, 3000);
+    }, 2000);
 
-    // 애니메이션 완료 후 전체 제거 및 배너 콘텐츠 표시 (2초 + 1초 애니메이션 = 3초 후)
+    // 애니메이션 완료 후 전체 제거 및 배너 콘텐츠 표시 (1초 + 1초 애니메이션 = 2초 후)
     setTimeout(function() {
       introAnimation.style.opacity = '0';
       introAnimation.style.transition = 'opacity 0.3s ease-out';
@@ -240,7 +240,7 @@ document.addEventListener('DOMContentLoaded', function() {
           bannerContent.classList.add('show');
         }
       }, 300);
-    }, 3500);
+    }, 2500);
   }
 
   // 배너 비디오 자동 재생 보장

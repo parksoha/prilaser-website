@@ -1,0 +1,420 @@
+/* ===== 레이저 가공 서비스 페이지 전용 스타일 ===== */
+
+/* 서브페이지 배너 */
+.page-banner {
+  position: relative;
+  height: 400px;
+  background: 
+    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1200&h=400&fit=crop') no-repeat center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  margin-bottom: 4rem;
+}
+
+.banner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.banner-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 0 2rem;
+}
+
+.about-prilaser-label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #B71C1C;
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.banner-content h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  font-family: 'Noto Sans KR', sans-serif;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.7);
+  animation: fadeInUp 1s ease-out;
+}
+
+.banner-content p {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: 'Noto Sans KR', sans-serif;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  animation: fadeInUp 1s ease-out 0.3s both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 메인 콘텐츠 */
+.laser-content {
+  padding: 0 0 5rem 0;
+  background: white;
+}
+
+/* 레이저 가공 소개 섹션 */
+.laser-intro {
+  margin-bottom: 6rem;
+}
+
+.laser-intro-content {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.laser-intro-text {
+  flex: 1;
+}
+
+.laser-intro-text h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #0A2A43;
+  margin-bottom: 2rem;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.laser-intro-text p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #555;
+  margin-bottom: 1.5rem;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.laser-intro-image {
+  flex: 1;
+}
+
+.laser-intro-image img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+/* 레이저 가공 특징 섹션 */
+.laser-features {
+  margin-bottom: 6rem;
+}
+
+.laser-features h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #0A2A43;
+  margin-bottom: 3rem;
+  text-align: center;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.feature-item {
+  background: white;
+  padding: 2.5rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.feature-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+}
+
+.feature-icon {
+  width: 80px;
+  height: 80px;
+  background: #E53935;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.feature-icon i {
+  font-size: 2rem;
+  color: white;
+  font-family: "Font Awesome 6 Free" !important;
+  font-weight: 900 !important;
+}
+
+.feature-item:hover .feature-icon {
+  background: #0A2A43;
+  transform: scale(1.1);
+}
+
+.feature-item h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #0A2A43;
+  margin-bottom: 1rem;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.feature-item p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #666;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* 가공 가능 재료 섹션 */
+.materials-section {
+  margin-bottom: 6rem;
+  background: #f8f9fa;
+  padding: 4rem 0;
+}
+
+.materials-section h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #0A2A43;
+  margin-bottom: 3rem;
+  text-align: center;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.materials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.material-item {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.material-item h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #E53935;
+  margin-bottom: 1.5rem;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.material-item ul {
+  list-style: none;
+  padding: 0;
+}
+
+.material-item li {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 0.8rem;
+  padding-left: 1.5rem;
+  position: relative;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.material-item li::before {
+  content: '•';
+  color: #E53935;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+/* 가공 서비스 섹션 */
+.processing-services {
+  margin-bottom: 4rem;
+}
+
+.processing-services h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #0A2A43;
+  margin-bottom: 3rem;
+  text-align: center;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.service-item {
+  background: white;
+  padding: 2.5rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.service-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+}
+
+.service-icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #E53935, #FF6B35);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.service-icon i {
+  font-size: 2rem;
+  color: white;
+  font-family: "Font Awesome 6 Free" !important;
+  font-weight: 900 !important;
+}
+
+.service-item:hover .service-icon {
+  transform: scale(1.1);
+}
+
+.service-item h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #0A2A43;
+  margin-bottom: 1rem;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.service-item p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #666;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .page-banner {
+    height: 300px;
+  }
+  
+  .banner-content h1 {
+    font-size: 2rem;
+  }
+  
+  .banner-content p {
+    font-size: 1rem;
+  }
+  
+  .laser-intro-content {
+    flex-direction: column;
+    gap: 2rem;
+    text-align: center;
+  }
+  
+  .laser-intro-text h2 {
+    font-size: 1.8rem;
+  }
+  
+  .laser-intro-text p {
+    font-size: 1rem;
+  }
+  
+  .laser-intro-image img {
+    height: 250px;
+  }
+  
+  .laser-features h2,
+  .materials-section h2,
+  .processing-services h2 {
+    font-size: 1.8rem;
+  }
+  
+  .features-grid,
+  .materials-grid,
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .feature-item,
+  .material-item,
+  .service-item {
+    padding: 2rem 1.5rem;
+  }
+  
+  .feature-icon,
+  .service-icon {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .feature-icon i,
+  .service-icon i {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-banner {
+    height: 250px;
+  }
+  
+  .banner-content h1 {
+    font-size: 1.5rem;
+  }
+  
+  .laser-intro-text h2 {
+    font-size: 1.5rem;
+  }
+  
+  .laser-features h2,
+  .materials-section h2,
+  .processing-services h2 {
+    font-size: 1.5rem;
+  }
+  
+  .feature-item,
+  .material-item,
+  .service-item {
+    padding: 1.5rem 1rem;
+  }
+}
