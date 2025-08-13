@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PRILASER - 문의하기. 궁금한 점이 있으시면 언제든 문의해 주세요.">
+  <meta name="keywords" content="문의하기, 견적 요청, PRILASER">
+  <title>문의하기 - PRILASER</title>
+  
+  <!-- 파비콘 설정 -->
+  <link rel="icon" type="image/png" sizes="32x32" href="../img/프리레이저_로고1.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../img/프리레이저_로고1.png">
+  <link rel="shortcut icon" href="../img/프리레이저_로고1.png">
+  <link rel="apple-touch-icon" href="../img/프리레이저_로고1.png">
+  
+  <link rel="stylesheet" href="../css/common.css" />
+  <link rel="stylesheet" href="../css/inquiry.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- 네비게이션 -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <a href="../index.html">
+          <img src="../img/프리레이저_로고웹-300x85.png" alt="PRILASER" class="nav-logo-img">
+        </a>
+      </div>
+      
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <a href="#" class="nav-link">회사소개</a>
+          <ul class="submenu">
+            <li><a href="./vision.html">비전 & 핵심가치</a></li>
+            <li><a href="./history.html">기업 연혁</a></li>
+            <li><a href="./certificates.html">인증서</a></li>
+            <li><a href="./clients.html">주요고객사</a></li>
+            <li><a href="./location.html">오시는 길</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">서비스</a>
+          <ul class="submenu">
+            <li><a href="./laser.html">레이저 가공</a></li>
+            <li><a href="./bending.html">절곡 가공</a></li>
+            <li><a href="./welding.html">제관/용접</a></li>
+            <li><a href="./print.html">도장/인쇄</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="./inquiry.html" class="nav-link">문의</a>
+        </li>
+      </ul>
+      
+      <div class="hamburger" aria-label="메뉴 열기" aria-expanded="false">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 페이지 배너 -->
+  <div class="page-header">
+    <h1>문의하기</h1>
+    <p>PRILASER에 궁금한 점이 있으시면 언제든 문의해 주세요</p>
+  </div>
+
+    <!-- 문의 폼 섹션 -->
+    <section class="inquiry-section">
+        <div class="container">
+            <div class="inquiry-content">
+                <div class="inquiry-info">
+                    <h2>문의 및 견적 요청</h2>
+                    <p>PRILASER의 다양한 서비스에 대한 문의나 견적 요청을 해주세요. 빠른 시일 내에 답변드리겠습니다.</p>
+                    
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h3>전화 문의</h3>
+                                <p>031-123-4567</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                                                         <div class="contact-text">
+                                 <h3>이메일 문의</h3>
+                                 <p>contact@prilaser.com</p>
+                             </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h3>업무 시간</h3>
+                                <p>평일 09:00 - 18:00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="inquiry-form">
+                    <form id="inquiryForm">
+                        <div class="form-group">
+                            <label for="name">이름 *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="company">회사명</label>
+                            <input type="text" id="company" name="company">
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">이메일 *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">연락처 *</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service">관심 서비스</label>
+                            <select id="service" name="service">
+                                <option value="">서비스를 선택해주세요</option>
+                                <option value="laser">레이저 가공</option>
+                                <option value="welding">제관/용접</option>
+                                <option value="bending">절곡 가공</option>
+                                <option value="print">도장/인쇄</option>
+                                <option value="other">기타</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">제목 *</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">문의 내용 *</label>
+                            <textarea id="message" name="message" rows="6" required placeholder="문의하실 내용을 자세히 작성해 주세요."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="privacy" name="privacy" required>
+                                <span class="checkmark"></span>
+                                개인정보 수집 및 이용에 동의합니다. *
+                            </label>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="submit-btn">
+                                <i class="fas fa-paper-plane"></i>
+                                문의하기
+                            </button>
+                            <button type="reset" class="reset-btn">
+                                <i class="fas fa-undo"></i>
+                                초기화
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  <!-- Footer -->
+  <footer id="footer" class="footer">
+    <div class="footer-content">
+      <div class="footer-columns">
+        <!-- 왼쪽 열: 로고 -->
+        <div class="footer-column">
+          <div class="footer-logo">
+            <img src="../img/프리레이저_로고웹-300x85.png" alt="PRILASER" class="footer-logo-img">
+          </div>
+        </div>
+        
+        <!-- 중앙 열: 네비게이션 링크 -->
+        <div class="footer-column">
+          <div class="footer-nav">
+            <h4>바로가기</h4>
+            <ul>
+              <li><a href="#">회사소개</a></li>
+              <li><a href="#">서비스</a></li>
+              <li><a href="#">문의</a></li>
+              <li class="footer-submenu-item">
+                <a href="#" class="footer-submenu-toggle">계열사 사이트 > </a>
+                <ul class="footer-submenu">
+                  <li><a href="#">PRIMEDITECH</a></li>
+                  <li><a href="#">PRICOMMA</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- 오른쪽 열: 연락처 정보 -->
+        <div class="footer-column">
+          <div class="footer-contact">
+            <p>주소 : 경기도 화성시 향남읍 구문천리 929-7번지</p>
+            <p>전화 : 031-123-4567</p>
+            <p>팩스 : 031-123-4568</p>
+            <p>이메일 : contact@prilaser.com</p>
+            <div class="footer-social">
+              <a href="#" class="footer-social-link" title="인스타그램">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="#" class="footer-social-link" title="블로그">
+                <i class="fas fa-blog"></i>
+              </a>
+              <a href="#" class="footer-social-link" title="유튜브">
+                <i class="fab fa-youtube"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2025 PRILASER. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+    <script src="../js/inquiry.js"></script>
+</body>
+</html>

@@ -203,4 +203,117 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
   });
+
+  // Gallery Carousel Functionality
+  function initializeCarousel(carouselId) {
+    const carousel = document.getElementById(carouselId);
+    if (!carousel) return;
+    
+    const carouselTrack = carousel.querySelector('.carousel-track');
+    const prevBtn = carousel.querySelector('.prev-btn');
+    const nextBtn = carousel.querySelector('.next-btn');
+    
+    if (!carouselTrack || !prevBtn || !nextBtn) return;
+    
+    let currentIndex = 0;
+    const originalItems = 4; // 원본 아이템 개수
+    let isTransitioning = false;
+    let autoSlideInterval;
+    
+    function getItemsPerView() {
+      return window.innerWidth <= 768 ? 1 : 3;
+    }
+    
+    function getItemWidth() {
+      return window.innerWidth <= 768 ? 100 : 34; // 사진 너비 + 간격의 절반 정도
+    }
+    
+    function updateCarousel() {
+      const itemWidth = getItemWidth();
+      const translateX = -currentIndex * itemWidth;
+      carouselTrack.style.transform = `translateX(${translateX}%)`;
+    }
+    
+    function handleTransitionEnd() {
+      isTransitioning = false;
+      
+      // 무한 스크롤을 위한 인덱스 조정
+      if (currentIndex >= originalItems) {
+        currentIndex = 0;
+        carouselTrack.style.transition = 'none';
+        updateCarousel();
+        // 즉시 트랜지션 복원
+        setTimeout(() => {
+          carouselTrack.style.transition = 'transform 0.5s ease';
+        }, 50);
+      } else if (currentIndex < 0) {
+        currentIndex = originalItems - 1;
+        carouselTrack.style.transition = 'none';
+        updateCarousel();
+        // 즉시 트랜지션 복원
+        setTimeout(() => {
+          carouselTrack.style.transition = 'transform 0.5s ease';
+        }, 50);
+      }
+    }
+    
+    function moveCarousel(direction) {
+      if (isTransitioning) return;
+      
+      isTransitioning = true;
+      currentIndex += direction;
+      updateCarousel();
+    }
+    
+    function startAutoSlide() {
+      autoSlideInterval = setInterval(() => {
+        moveCarousel(1);
+      }, 5000); // 5초마다 자동 슬라이드
+    }
+    
+    function stopAutoSlide() {
+      if (autoSlideInterval) {
+        clearInterval(autoSlideInterval);
+      }
+    }
+    
+    prevBtn.addEventListener('click', () => {
+      stopAutoSlide();
+      moveCarousel(-1);
+      startAutoSlide(); // 클릭 후 다시 자동 슬라이드 시작
+    });
+    
+    nextBtn.addEventListener('click', () => {
+      stopAutoSlide();
+      moveCarousel(1);
+      startAutoSlide(); // 클릭 후 다시 자동 슬라이드 시작
+    });
+    
+    // 마우스 호버 시 자동 슬라이드 정지
+    carouselTrack.addEventListener('mouseenter', stopAutoSlide);
+    carouselTrack.addEventListener('mouseleave', startAutoSlide);
+    
+    // 트랜지션 종료 이벤트 리스너
+    carouselTrack.addEventListener('transitionend', handleTransitionEnd);
+    
+    // Initialize carousel
+    updateCarousel();
+    
+    // 자동 슬라이드 시작
+    startAutoSlide();
+    
+    // 윈도우 리사이즈 시 캐러셀 업데이트
+    window.addEventListener('resize', () => {
+      updateCarousel();
+    });
+  }
+  
+  // 제관용접 캐러셀 초기화
+  initializeCarousel('welding-carousel');
+  
+  // 절곡가공 캐러셀 초기화
+  initializeCarousel('bending-carousel');
+  
+  // 도장인쇄 캐러셀 초기화
+  initializeCarousel('print-carousel');
 });

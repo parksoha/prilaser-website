@@ -1,0 +1,400 @@
+/* ===== 문의 페이지 전용 스타일 ===== */
+
+/* 스크롤바 완전 숨기기 */
+* {
+  scrollbar-width: none !important; /* Firefox */
+  -ms-overflow-style: none !important; /* IE and Edge */
+}
+
+*::-webkit-scrollbar {
+  display: none !important; /* Chrome, Safari, Opera */
+}
+
+html, body {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+  overflow-x: hidden;
+}
+
+html::-webkit-scrollbar, body::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* 페이지 헤더 (배너) */
+.page-header {
+  text-align: center;
+  background: 
+    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1200&h=400&fit=crop') no-repeat center/cover;
+  padding: 8rem 2rem 8.4375rem 2rem;
+  position: relative;
+  overflow: hidden;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.05) 50%, transparent 70%);
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.page-header h1 {
+  font-size: 3.1rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 1.5rem;
+  margin-top: 4rem;
+  font-family: 'Noto Sans KR', sans-serif;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.7);
+  position: relative;
+  z-index: 1;
+  letter-spacing: 3px;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: textFadeInUp 1s ease-out 0.5s forwards;
+}
+
+.page-header p {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.95);
+  font-family: 'Noto Sans KR', sans-serif;
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  max-width: 600px;
+  line-height: 1.6;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: textFadeInUp 1s ease-out 0.8s forwards;
+}
+
+@keyframes textFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 문의 섹션 스타일 */
+.inquiry-section {
+    padding: 6rem 0 4rem 0;
+    background: #f8f9fa;
+}
+
+.inquiry-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.inquiry-info h2 {
+    font-size: 2.2rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.inquiry-info p {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+.contact-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #B71C1C, #D32F2F);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+}
+
+.contact-text h3 {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 0.3rem;
+}
+
+.contact-text p {
+    font-size: 1rem;
+    color: #666;
+    margin: 0;
+}
+
+.inquiry-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.inquiry-info h2 {
+    font-size: 2.2rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.inquiry-info p {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+.contact-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #B71C1C, #D32F2F);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+}
+
+.contact-text h3 {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 0.3rem;
+}
+
+.contact-text p {
+    font-size: 1rem;
+    color: #666;
+    margin: 0;
+}
+
+/* 폼 스타일 */
+.inquiry-form {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #333;
+    font-size: 0.95rem;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    font-family: inherit;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: #B71C1C;
+    box-shadow: 0 0 0 3px rgba(183, 28, 28, 0.1);
+}
+
+textarea {
+    resize: none;
+    height: 120px;
+    overflow-y: auto;
+}
+
+/* 체크박스 스타일 */
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+}
+
+/* 버튼 스타일 */
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.submit-btn, .reset-btn {
+    flex: 1;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.submit-btn {
+    background: linear-gradient(135deg, #B71C1C, #D32F2F);
+    color: white;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(183, 28, 28, 0.3);
+}
+
+.reset-btn {
+    background: #f8f9fa;
+    color: #666;
+    border: 2px solid #e0e0e0;
+}
+
+.reset-btn:hover {
+    background: #e9ecef;
+    border-color: #adb5bd;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .page-header {
+        padding: 6rem 1rem 6rem 1rem;
+        min-height: 300px;
+    }
+    
+    .page-header h1 {
+        font-size: 2.2rem;
+        margin-top: 2rem;
+    }
+    
+    .page-header p {
+        font-size: 1rem;
+    }
+    
+    .inquiry-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-header {
+        padding: 4rem 1rem 4rem 1rem;
+        min-height: 250px;
+    }
+    
+    .page-header h1 {
+        font-size: 1.8rem;
+        margin-top: 1rem;
+    }
+    
+    .page-header p {
+        font-size: 0.9rem;
+    }
+    
+    .inquiry-form {
+        padding: 1.5rem;
+    }
+    
+    .contact-item {
+        padding: 1rem;
+    }
+    
+    .contact-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+}

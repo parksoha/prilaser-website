@@ -372,6 +372,7 @@
   color: #0A2A43;
   margin-bottom: 0.8rem;
   font-family: 'Noto Sans KR', sans-serif;
+  text-align: center;
 }
 
 .applications-list ul {
@@ -510,9 +511,10 @@
   box-shadow: 0 20px 60px rgba(0,0,0,0.1);
   position: relative;
   width: 100%;
-  max-width: calc(100% - 8rem);
+  max-width: calc(100% - 2rem);
   margin: 0 auto;
-  background: transparent;
+  background: #e8e8e8;
+  padding: 20px;
 }
 
 .carousel-track {
@@ -527,15 +529,16 @@
   flex: 0 0 calc(33.333% - 1.33rem);
   min-width: calc(33.333% - 1.33rem);
   max-width: calc(33.333% - 1.33rem);
-  border-radius: 0;
+  border-radius: 15px;
   overflow: hidden;
   transition: all 0.3s ease;
-  box-shadow: none;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.25);
   flex-shrink: 0;
   margin-right: 2rem;
-  background: transparent;
+  background: white;
   margin-bottom: 0;
   padding-bottom: 0;
+  position: relative;
 }
 
 .gallery-item:last-child {
@@ -543,8 +546,8 @@
 }
 
 .gallery-item:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  transform: scale(1.05);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
 }
 
 .gallery-item img {
@@ -591,11 +594,11 @@
 }
 
 .prev-btn {
-  left: 0;
+  left: -15px;
 }
 
 .next-btn {
-  right: 0;
+  right: -15px;
 }
 
 .carousel-btn i {
@@ -793,6 +796,10 @@
     min-width: 100%;
     max-width: 100%;
     margin-right: 0;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    border: 2px solid #e0e0e0;
+    background: white;
   }
   
   .gallery-item img {

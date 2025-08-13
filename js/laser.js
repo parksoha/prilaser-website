@@ -58,34 +58,55 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // 서브메뉴 토글 (데스크톱)
-  submenuToggles.forEach(item => {
-    const link = item.querySelector('.nav-link');
-    const submenu = item.querySelector('.submenu');
+  // 모바일 서브메뉴 토글 (768px 이하에서만)
+  const navItems = document.querySelectorAll(".nav-item");
+  navItems.forEach(item => {
+    const submenu = item.querySelector(".submenu");
+    const navLink = item.querySelector(".nav-link");
     
-    if (link && submenu) {
-      link.addEventListener('click', function(e) {
-        // 모바일에서는 햄버거 메뉴가 열려있을 때만 서브메뉴 토글
+    if (submenu && navLink) {
+      navLink.addEventListener("click", (e) => {
+        // 모바일에서만 서브메뉴 토글 (768px 이하)
         if (window.innerWidth <= 768) {
-          if (navMenu.classList.contains('active')) {
-            e.preventDefault();
-            submenu.classList.toggle('active');
+          e.preventDefault();
+          e.stopPropagation(); // 이벤트 전파 중단
+          
+          // 다른 서브메뉴들 닫기
+          navItems.forEach(otherItem => {
+            if (otherItem !== item) {
+              const otherSubmenu = otherItem.querySelector(".submenu");
+              if (otherSubmenu) {
+                otherSubmenu.classList.remove("active");
+              }
+            }
+          });
+          
+          // 현재 서브메뉴 토글 (즉시 표시)
+          const isActive = submenu.classList.contains("active");
+          if (isActive) {
+            submenu.classList.remove("active");
+          } else {
+            submenu.classList.add("active");
+          }
+        }
+        // PC에서는 기본 동작 유지 (hover로 서브메뉴 표시)
+      });
+
+      // 키보드 접근성 개선
+      navLink.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          if (window.innerWidth <= 768) {
+            const isActive = submenu.classList.contains("active");
+            if (isActive) {
+              submenu.classList.remove("active");
+            } else {
+              submenu.classList.add("active");
+            }
           }
         }
       });
     }
-  });
-
-  // 모바일에서 메뉴 링크 클릭 시 메뉴 닫기
-  navLinks.forEach(link => {
-    link.addEventListener('click', function() {
-      if (window.innerWidth <= 768) {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
-        hamburger.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-      }
-    });
   });
 
   // 윈도우 리사이즈 시 메뉴 상태 초기화
@@ -229,11 +250,16 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // Gallery Carousel Functionality
-  const carouselTrack = document.querySelector('.carousel-track');
-  const prevBtn = document.querySelector('.prev-btn');
-  const nextBtn = document.querySelector('.next-btn');
-  
-  if (carouselTrack && prevBtn && nextBtn) {
+  function initializeCarousel(carouselId) {
+    const carousel = document.getElementById(carouselId);
+    if (!carousel) return;
+    
+    const carouselTrack = carousel.querySelector('.carousel-track');
+    const prevBtn = carousel.querySelector('.prev-btn');
+    const nextBtn = carousel.querySelector('.next-btn');
+    
+    if (!carouselTrack || !prevBtn || !nextBtn) return;
+    
     let currentIndex = 0;
     const originalItems = 4; // 원본 아이템 개수
     let isTransitioning = false;
@@ -244,7 +270,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function getItemWidth() {
-      return window.innerWidth <= 768 ? 100 : 33.333;
+      return window.innerWidth <= 768 ? 100 : 34; // 사진 너비 + 간격의 절반 정도
     }
     
     function updateCarousel() {
@@ -325,19 +351,11 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('resize', () => {
       updateCarousel();
     });
-    
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowLeft') {
-        stopAutoSlide();
-        moveCarousel(-1);
-        startAutoSlide();
-      } else if (e.key === 'ArrowRight') {
-        stopAutoSlide();
-        moveCarousel(1);
-        startAutoSlide();
-      }
-    });
   }
+  
+  // 두 캐러셀 모두 초기화
+  initializeCarousel('flat-carousel');
+  initializeCarousel('pipe-carousel');
+  initializeCarousel('welding-carousel');
 
 });
