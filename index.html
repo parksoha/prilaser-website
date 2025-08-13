@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PRILASER - 정밀 레이저 가공 전문 기업. 최첨단 장비와 기술력으로 고객의 요구사항을 정확히 구현합니다.">
+  <meta name="keywords" content="레이저 가공, 파이프 가공, 정밀 가공, PRILASER">
+  <title>PRILASER - 정밀 레이저 가공 전문 기업</title>
+  
+  <!-- 파비콘 설정 -->
+  <link rel="icon" type="image/png" sizes="32x32" href="img/프리레이저_로고1.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="img/프리레이저_로고1.png">
+  <link rel="shortcut icon" href="img/프리레이저_로고1.png">
+  <link rel="apple-touch-icon" href="img/프리레이저_로고1.png">
+  
+  <link rel="stylesheet" href="./css/common.css" />
+  <link rel="stylesheet" href="./css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- 네비게이션 바 -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <a href="#home">
+          <img src="./img/프리레이저_로고웹-300x85.png" alt="PRILASER" class="nav-logo-img">
+        </a>
+      </div>
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <a href="#" class="nav-link">회사소개</a>
+          <ul class="submenu">
+            <li><a href="./sub/vision.html">비전 & 핵심가치</a></li>
+            <li><a href="./sub/history.html">기업 연혁</a></li>
+            <li><a href="./sub/certificates.html">인증서</a></li>
+            <li><a href="./sub/clients.html">주요고객사</a></li>
+            <li><a href="./sub/location.html">오시는 길</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">서비스</a>
+          <ul class="submenu">
+            <li><a href="./sub/laser.html">레이저 가공</a></li>
+            <li><a href="./sub/bending.html">절곡 가공</a></li>
+            <li><a href="./sub/welding.html">제관/용접</a></li>
+            <li><a href="./sub/print.html">도장/인쇄</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="./sub/inquiry.html" class="nav-link">문의</a>
+        </li>
+      </ul>
+      <div class="hamburger" aria-label="메뉴 열기" aria-expanded="false">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 인트로 애니메이션 -->
+  <div class="intro-animation">
+    <div class="intro-top"></div>
+    <div class="intro-center-line"></div>
+    <div class="intro-bottom"></div>
+  </div>
+
+  <!-- 메인 배너 -->
+  <section id="home" class="banner">
+    <video class="banner-video" autoplay muted loop playsinline preload="auto" webkit-playsinline>
+      <source src="./img/banner01.mp4" type="video/mp4">
+    </video>
+    <div class="banner-fallback"></div>
+    <div class="banner-overlay">
+      <div class="banner-content">
+        <h1>정밀 레이저 가공의 새로운 기준</h1>
+        <p>첨단 장비와 신뢰성 있는 품질로 고객의 아이디어를 실현합니다.</p>
+        <a href="./sub/inquiry.html" class="cta-btn">견적 문의</a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- 회사소개 섹션 -->
+  <section id="about" class="about-section">
+    <div class="container">
+      <div class="about-content">
+        <div class="about-image">
+          <img src="img/about.png" alt="PRILASER 회사 소개" onerror="this.src='https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600&h=400&fit=crop'">
+        </div>
+        <div class="about-text">
+          <div class="about-header">
+            <span class="about-label">ABOUT PRILASER</span>
+          </div>
+          <h3>정밀 레이저 가공의 선두주자</h3>
+          <p>PRILASER는 정밀 레이저 가공 전문 기업으로, 최첨단 장비와 기술력을 바탕으로 고객의 요구사항을 정확히 구현합니다.</p>
+          <p>경험과 노하우를 바탕으로 다양한 산업 분야에서 신뢰받는 파트너로서 고객의 성공을 위해 최선을 다하고 있습니다.</p>
+          <a href="./sub/vision.html" class="about-btn">회사소개 바로가기</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  
+  <!-- 서비스 섹션 -->
+  <section id="services" class="services">
+    <h2>MAIN SERVICES</h2>
+    <div class="service-cards">
+      <a href="sub/laser.html" class="card" style="background: url('img/services01.png') no-repeat center/cover; text-decoration: none; color: inherit;">
+        <div class="card-content">
+          <h3>레이저 가공</h3>
+          <p>정밀한 레이저 가공 기술로 완벽한 품질을 제공합니다.</p>
+        </div>
+      </a>
+      <a href="sub/bending.html" class="card" style="background: url('img/services02.png') no-repeat center/cover; text-decoration: none; color: inherit;">
+        <div class="card-content">
+          <h3>절곡 가공</h3>
+          <p>정밀한 각도와 반경을 요구하는 절곡 가공을 전문적으로 수행합니다.</p>
+        </div>
+      </a>
+      <a href="sub/welding.html" class="card" style="background: url('img/services03.png') no-repeat center/cover; text-decoration: none; color: inherit;">
+        <div class="card-content">
+          <h3>제관/용접</h3>
+          <p>전문적인 용접 기술과 제관 가공으로 제품의 내구성을 향상시킵니다.</p>
+        </div>
+      </a>
+      <a href="sub/print.html" class="card" style="background: url('img/services04.png') no-repeat center/cover; text-decoration: none; color: inherit;">
+        <div class="card-content">
+          <h3>도장/인쇄</h3>
+          <p>고품질 도장 서비스로 제품의 외관과 내구성을 완벽하게 마무리합니다.</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+
+  
+  <!-- 장비·기술 강점 -->
+  <section class="equipment-tech">
+    <div class="container">
+      <h2>PRILASER PROCESS</h2>
+      <p class="equipment-description">최첨단 장비와 기술력으로 고객의 요구사항을 정확히 구현합니다.</p>
+      
+      <div class="equipment-cards">
+          <div class="equipment-card">
+            <div class="equipment-step-number">STEP 01</div>
+            <div class="equipment-card-icon">
+              <i class="fas fa-laptop-code"></i>
+            </div>
+            <h3>설계/프로그램</h3>
+          </div>
+          
+          <div class="equipment-arrow">
+            <i class="fas fa-chevron-right"></i>
+          </div>
+          
+          <div class="equipment-card">
+            <div class="equipment-step-number">STEP 02</div>
+            <div class="equipment-card-icon">
+              <i class="fas fa-cog"></i>
+            </div>
+            <h3>레이저 가공</h3>
+          </div>
+          
+          <div class="equipment-arrow">
+            <i class="fas fa-chevron-right"></i>
+          </div>
+          
+          <div class="equipment-card">
+            <div class="equipment-step-number">STEP 03</div>
+            <div class="equipment-card-icon">
+              <i class="fas fa-random"></i>
+            </div>
+            <h3>절곡가공</h3>
+          </div>
+          
+          <div class="equipment-arrow">
+            <i class="fas fa-chevron-right"></i>
+          </div>
+          
+          <div class="equipment-card">
+            <div class="equipment-step-number">STEP 04</div>
+            <div class="equipment-card-icon">
+              <i class="fas fa-fire"></i>
+            </div>
+            <h3>제관/용접</h3>
+          </div>
+          
+          <div class="equipment-arrow">
+            <i class="fas fa-chevron-right"></i>
+          </div>
+          
+          <div class="equipment-card">
+            <div class="equipment-step-number">STEP 05</div>
+            <div class="equipment-card-icon">
+              <i class="fas fa-paint-brush"></i>
+            </div>
+            <h3>도장/인쇄</h3>
+          </div>
+          
+          <div class="equipment-arrow">
+            <i class="fas fa-chevron-right"></i>
+          </div>
+          
+          <div class="equipment-card">
+            <div class="equipment-step-number">STEP 06</div>
+            <div class="equipment-card-icon">
+              <i class="fas fa-puzzle-piece"></i>
+            </div>
+            <h3>제품조립</h3>
+          </div>
+          
+          <div class="equipment-arrow">
+            <i class="fas fa-chevron-right"></i>
+          </div>
+          
+          <div class="equipment-card">
+            <div class="equipment-step-number">STEP 07</div>
+            <div class="equipment-card-icon">
+              <i class="fas fa-search"></i>
+            </div>
+            <h3>품질검사</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 주요실적 & 상담의뢰 카드 섹션 -->
+  <section class="action-cards">
+    <div class="container">
+      <div class="action-cards-grid">
+        <div class="action-card">
+          <a href="sub/clients.html" style="text-decoration: none; color: inherit;">
+            <div class="card-background">
+              <div class="card-overlay"></div>
+            </div>
+            <div class="card-content">
+              <div>
+                <h3>주요 고객사</h3>
+                <p>PRILASER의 다양한 실적을 확인해보세요.</p>
+              </div>
+              <div class="card-icon">
+                <i class="fas fa-plus"></i>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="action-card">
+          <a href="./sub/inquiry.html" style="text-decoration: none; color: inherit;">
+            <div class="card-background">
+              <div class="card-overlay"></div>
+            </div>
+            <div class="card-content">
+              <div>
+                <h3>상담의뢰</h3>
+                <p>궁금한 사항이 있으시면 연락처로 문의해주세요.</p>
+              </div>
+              <div class="card-icon">
+                <i class="fas fa-plus"></i>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="footer" class="footer">
+    <div class="footer-content">
+      <div class="footer-columns">
+        <!-- 왼쪽 열: 로고 -->
+        <div class="footer-column">
+          <div class="footer-logo">
+            <img src="./img/프리레이저_로고웹-300x85.png" alt="PRILASER" class="footer-logo-img">
+          </div>
+        </div>
+        
+        <!-- 중앙 열: 네비게이션 링크 -->
+        <div class="footer-column">
+          <div class="footer-nav">
+            <h4>바로가기</h4>
+            <ul>
+              <li><a href="./sub/vision.html">회사소개</a></li>
+              <li><a href="./sub/laser.html">서비스</a></li>
+              <li><a href="./sub/inquiry.html">문의</a></li>
+              <li class="footer-submenu-item">
+                <a href="#" class="footer-submenu-toggle">계열사 사이트 > </a>
+                <ul class="footer-submenu">
+                                                       <li><a href="https://prmtec.com/" target="_blank" rel="noopener noreferrer">PRIMEDITECH</a></li>
+                                                       <li><a href="https://pricomma.com/" target="_blank" rel="noopener noreferrer">PRICOMMA</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- 오른쪽 열: 연락처 정보 -->
+        <div class="footer-column">
+          <div class="footer-contact">
+            
+            <p>주소 : 경기도 화성시 향남읍 구문천리 929-7번지</p>
+            <p>전화 : 031-123-4567</p>
+            <p>팩스 : 031-123-4568</p>
+            <p>이메일 : contact@prilaser.com</p>
+            <div class="footer-social">
+                             <a href="https://www.instagram.com/prilaser/" class="footer-social-link" title="인스타그램" target="_blank" rel="noopener noreferrer">
+                 <i class="fab fa-instagram"></i>
+               </a>
+                             <a href="https://blog.naver.com/primelaser" class="footer-social-link" title="블로그" target="_blank" rel="noopener noreferrer">
+                 <i class="fas fa-blog"></i>
+               </a>
+                             <a href="https://www.youtube.com/@PRILASER" class="footer-social-link" title="유튜브" target="_blank" rel="noopener noreferrer">
+                 <i class="fab fa-youtube"></i>
+               </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2025 PRILASER. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+<script src="./js/script.js"></script>
+</html>
