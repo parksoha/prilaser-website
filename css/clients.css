@@ -5,7 +5,7 @@
   text-align: center;
   background: 
     linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-    url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1200&h=400&fit=crop') no-repeat center/cover;
+    url('../img/banner.png') no-repeat center/cover;
   padding: 8rem 2rem 8.4375rem 2rem;
   position: relative;
   overflow: hidden;
@@ -74,94 +74,41 @@
   }
 }
 
-/* 서브페이지 배너 */
-.page-banner {
-  position: relative;
-  height: 60vh;
-  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: white;
-  overflow: hidden;
+
+
+/* 주요 고객사 페이지 */
+.clients-page {
+  padding: 100px 0;
+  background: white;
+  width: 100%;
+  margin: 0;
 }
 
-.page-banner::before {
+/* PRILASER CLIENTS 라벨 */
+.about-prilaser-label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #B71C1C;
+  text-align: center;
+  margin-bottom: 7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  position: relative;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.about-prilaser-label::after {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: url('../img/banner01.mp4') no-repeat center/cover;
-  opacity: 0.3;
-  z-index: 1;
-}
-
-.banner-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 2;
-}
-
-.banner-content {
-  position: relative;
-  z-index: 3;
-  max-width: 800px;
-  padding: 0 2rem;
-}
-
-.about-prilaser-label {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #8B0000;
-  margin-bottom: 1rem;
-  font-family: 'Noto Sans KR', sans-serif;
-  letter-spacing: 2px;
-}
-
-.banner-content h1 {
-  font-size: 3.5rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-  color: white;
-  font-family: 'Noto Sans KR', sans-serif;
-  animation: fadeInUp 1s ease-out;
-}
-
-.banner-content p {
-  font-size: 1.2rem;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.9);
-  font-family: 'Noto Sans KR', sans-serif;
-  animation: fadeInUp 1s ease-out 0.3s both;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background: #B71C1C;
 }
 
 /* 페이지 준비 중 섹션 */
-.coming-soon-section {
-  padding: 8rem 2rem 140px 2rem;
-  background: white;
-  min-height: 60vh;
-  display: flex;
-  align-items: center;
-}
-
 .coming-soon-content {
   text-align: center;
   max-width: 600px;
@@ -227,21 +174,21 @@
 
 /* 반응형 디자인 */
 @media (max-width: 768px) {
-  .page-banner {
-    height: 50vh;
+  .page-header h1 {
+    font-size: 2rem;
   }
-  
-  .banner-content h1 {
-    font-size: 2.5rem;
-  }
-  
-  .banner-content p {
+
+  .page-header p {
     font-size: 1rem;
   }
   
-  .coming-soon-section {
-    padding: 6rem 1rem 100px 1rem;
-    min-height: 50vh;
+  .clients-page {
+    padding: 80px 0;
+  }
+  
+  .about-prilaser-label {
+    font-size: 1rem;
+    margin-bottom: 5rem;
   }
   
   .coming-soon-icon {
@@ -251,33 +198,34 @@
   }
   
   .coming-soon-icon i {
-    font-size: 2.5rem;
-  }
-  
-  .coming-soon-content h2 {
     font-size: 2.2rem;
   }
   
+  .coming-soon-content h2 {
+    font-size: 1.8rem;
+  }
+  
   .coming-soon-content p {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 }
 
 @media (max-width: 480px) {
-  .page-banner {
-    height: 40vh;
+  .page-header h1 {
+    font-size: 1.6rem;
   }
-  
-  .banner-content h1 {
-    font-size: 2rem;
-  }
-  
-  .banner-content p {
+
+  .page-header p {
     font-size: 0.9rem;
   }
   
-  .coming-soon-section {
-    padding: 4rem 1rem 80px 1rem;
+  .clients-page {
+    padding: 60px 0;
+  }
+  
+  .about-prilaser-label {
+    font-size: 0.9rem;
+    margin-bottom: 4rem;
   }
   
   .coming-soon-icon {
@@ -287,14 +235,14 @@
   }
   
   .coming-soon-icon i {
-    font-size: 2rem;
-  }
-  
-  .coming-soon-content h2 {
     font-size: 1.8rem;
   }
   
+  .coming-soon-content h2 {
+    font-size: 1.5rem;
+  }
+  
   .coming-soon-content p {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 }

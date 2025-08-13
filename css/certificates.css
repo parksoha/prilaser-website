@@ -3,9 +3,9 @@
 /* 페이지 헤더 */
 .page-header {
     text-align: center;
-    background: 
-        linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-        url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1200&h=400&fit=crop') no-repeat center/cover;
+      background: 
+    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url('../img/banner.png') no-repeat center/cover;
     padding: 8rem 2rem 8.4375rem 2rem;
     position: relative;
     overflow: hidden;

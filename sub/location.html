@@ -18,8 +18,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <!-- Google Maps API -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+
 </head>
 <body>
 
@@ -38,7 +37,7 @@
             <li><a href="./vision.html">비전 & 핵심가치</a></li>
             <li><a href="./history.html">기업 연혁</a></li>
             <li><a href="./certificates.html">인증서</a></li>
-            <li><a href="./clients.html">주요 납품처</a></li>
+            <li><a href="./clients.html">주요고객사</a></li>
             <li><a href="./location.html">오시는 길</a></li>
           </ul>
         </li>
@@ -76,14 +75,12 @@
       <!-- 지도 섹션 -->
       <div class="map-section">
         <div class="map-container">
-          <div id="map" class="kakao-map"></div>
+          <!-- OpenStreetMap -->
+          <div id="map" class="openstreet-map"></div>
           
           <!-- 지도 하단 정보 블록 -->
           <div class="map-info-overlay">
             <div class="office-info">
-              <div class="office-name">
-                <h3>PRILASER</h3>
-              </div>
               <div class="office-details">
                 <p class="address">경기도 화성시 향남읍 구문천리 929-7번지</p>
                 <p class="contact">T. 031-123-4567 F. 031-123-4568</p>
@@ -140,7 +137,7 @@
                              <a href="https://blog.naver.com/primelaser" class="footer-social-link" title="블로그" target="_blank" rel="noopener noreferrer">
                  <i class="fas fa-blog"></i>
                </a>
-                             <a href="https://www.instagram.com/prilaser/" class="footer-social-link" title="유튜브" target="_blank" rel="noopener noreferrer">
+                             <a href="https://www.youtube.com/@PRILASER" class="footer-social-link" title="유튜브" target="_blank" rel="noopener noreferrer">
                  <i class="fab fa-youtube"></i>
                </a>
             </div>
@@ -154,7 +151,9 @@
     </div>
   </footer>
 
+  <!-- OpenStreetMap 라이브러리 -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="../js/location.js"></script>
 </body>
-<script src="../js/script.js"></script>
-<script src="../js/location.js"></script>
 </html>

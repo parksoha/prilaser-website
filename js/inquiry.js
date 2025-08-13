@@ -1,47 +1,74 @@
 // ===== 문의 페이지 전용 JavaScript =====
 
 document.addEventListener('DOMContentLoaded', function() {
-    // 모바일 메뉴 토글
+    // 네비게이션 요소들
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
+    const navItems = document.querySelectorAll('.nav-item');
 
+    // 햄버거 메뉴 토글
     if (hamburger && navMenu) {
         hamburger.addEventListener('click', function() {
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
+            
+            // ARIA 속성 업데이트
+            const isExpanded = hamburger.classList.contains('active');
+            hamburger.setAttribute('aria-expanded', isExpanded);
+            
+            // body 스크롤 방지
+            if (isExpanded) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
         });
     }
 
-    // 서브메뉴 토글 (모바일)
-    const hasSubmenuItems = document.querySelectorAll('.has-submenu');
-    
-    hasSubmenuItems.forEach(item => {
-        const link = item.querySelector('.nav-link');
+    // 모바일 서브메뉴 토글 (768px 이하에서만)
+    navItems.forEach(item => {
         const submenu = item.querySelector('.submenu');
+        const navLink = item.querySelector('.nav-link');
         
-        if (link && submenu) {
-            link.addEventListener('click', function(e) {
+        if (submenu && navLink) {
+            navLink.addEventListener('click', (e) => {
+                // 모바일에서만 서브메뉴 토글 (768px 이하)
                 if (window.innerWidth <= 768) {
                     e.preventDefault();
-                    e.stopPropagation();
+                    e.stopPropagation(); // 이벤트 전파 중단
                     
-                    // 다른 서브메뉴 닫기
-                    hasSubmenuItems.forEach(otherItem => {
+                    // 다른 서브메뉴들 닫기
+                    navItems.forEach(otherItem => {
                         if (otherItem !== item) {
-                            otherItem.classList.remove('active');
                             const otherSubmenu = otherItem.querySelector('.submenu');
                             if (otherSubmenu) {
-                                otherSubmenu.style.display = 'none';
+                                otherSubmenu.classList.remove('active');
                             }
                         }
                     });
                     
-                    // 현재 서브메뉴 토글
-                    item.classList.toggle('active');
-                    if (item.classList.contains('active')) {
-                        submenu.style.display = 'block';
+                    // 현재 서브메뉴 토글 (즉시 표시)
+                    const isActive = submenu.classList.contains('active');
+                    if (isActive) {
+                        submenu.classList.remove('active');
                     } else {
-                        submenu.style.display = 'none';
+                        submenu.classList.add('active');
+                    }
+                }
+                // PC에서는 기본 동작 유지 (hover로 서브메뉴 표시)
+            });
+
+            // 키보드 접근성 개선
+            navLink.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    if (window.innerWidth <= 768) {
+                        const isActive = submenu.classList.contains('active');
+                        if (isActive) {
+                            submenu.classList.remove('active');
+                        } else {
+                            submenu.classList.add('active');
+                        }
                     }
                 }
             });
@@ -261,13 +288,23 @@ document.addEventListener('DOMContentLoaded', function() {
             hamburger.classList.remove('active');
             
             // 서브메뉴 초기화
-            hasSubmenuItems.forEach(item => {
-                item.classList.remove('active');
+            navItems.forEach(item => {
                 const submenu = item.querySelector('.submenu');
                 if (submenu) {
-                    submenu.style.display = '';
+                    submenu.classList.remove('active');
                 }
             });
+        }
+    });
+
+    // 푸터 서브메뉴 토글 기능
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('footer-submenu-toggle')) {
+            e.preventDefault();
+            const submenu = e.target.nextElementSibling;
+            if (submenu && submenu.classList.contains('footer-submenu')) {
+                submenu.classList.toggle('active');
+            }
         }
     });
 });

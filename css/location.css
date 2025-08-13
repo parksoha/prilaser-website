@@ -1,25 +1,60 @@
 /* ===== 오시는 길 페이지 전용 스타일 ===== */
 
-/* Google Maps 전역 스타일 */
-.gm-style {
+/* 스크롤바 숨기기 및 가로 스크롤 방지 */
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  box-sizing: border-box;
+}
+
+*::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+html, body {
+  font-size: 16px;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  width: 100%;
+  max-width: 100%;
+}
+
+html::-webkit-scrollbar, 
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* 컨테이너 가로 스크롤 방지 */
+.container {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* 지도 섹션 가로 스크롤 방지 */
+.map-section {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.map-container {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* OpenStreetMap 전역 스타일 */
+.leaflet-container {
   font-family: 'Noto Sans KR', sans-serif !important;
 }
 
-.gm-style .gm-style-iw {
-  font-family: 'Noto Sans KR', sans-serif !important;
-}
-
-.gm-style .gm-style-iw-c {
+.leaflet-popup-content-wrapper {
   border-radius: 8px !important;
   box-shadow: 0 4px 20px rgba(0,0,0,0.15) !important;
 }
 
-.gm-style .gm-style-iw-d {
-  overflow: hidden !important;
-}
-
-.gm-style .gm-style-iw-t::after {
-  background: linear-gradient(45deg, rgba(255,255,255,0) 30%, rgba(255,255,255,1) 50%, rgba(255,255,255,0) 70%) !important;
+.leaflet-popup-content {
+  margin: 15px !important;
+  font-family: 'Noto Sans KR', sans-serif !important;
 }
 
 /* 오시는 길 페이지 스타일 */
@@ -57,7 +92,7 @@
   text-align: center;
   background: 
     linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-    url('https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?w=1200&h=400&fit=crop') no-repeat center/cover;
+    url('../img/banner.png') no-repeat center/cover;
   padding: 8rem 2rem 8.4375rem 2rem;
   position: relative;
   overflow: hidden;
@@ -131,6 +166,7 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
+  overflow-x: hidden;
 }
 
 .map-container {
@@ -148,14 +184,32 @@
   box-shadow: 0 12px 40px rgba(0,0,0,0.15);
 }
 
-.kakao-map {
+/* OpenStreetMap 스타일 */
+.openstreet-map {
   width: 100%;
-  height: 100%;
+  height: calc(100% - 120px); /* 하단 정보 블록 공간 확보 */
   position: relative;
   z-index: 1;
+  border-radius: 16px 16px 0 0; /* 하단 모서리는 둥글게 하지 않음 */
+  overflow: hidden;
 }
 
-/* Google Maps 스타일 */
+/* Leaflet 지도 커스터마이징 */
+.leaflet-container {
+  font-family: 'Noto Sans KR', sans-serif !important;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 8px !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15) !important;
+}
+
+.leaflet-popup-content {
+  margin: 15px !important;
+  font-family: 'Noto Sans KR', sans-serif !important;
+}
+
+/* Google Maps 스타일 (기존 유지) */
 .kakao-map {
   width: 100%;
   height: 100%;
@@ -176,6 +230,8 @@
   padding: 2.5rem;
   backdrop-filter: blur(10px);
   border-top: 3px solid rgba(255, 255, 255, 0.2);
+  z-index: 10; /* 지도 위에 표시되도록 z-index 증가 */
+  border-radius: 0 0 16px 16px; /* 하단 모서리만 둥글게 */
 }
 
 .office-info {
@@ -249,7 +305,11 @@
   }
   
   .map-container {
-    height: 450px;
+    height: 500px; /* 450px에서 500px로 증가 */
+  }
+  
+  .openstreet-map {
+    height: calc(100% - 120px); /* 100px에서 120px로 조정 */
   }
   
   .map-info-overlay {
@@ -299,7 +359,11 @@
   }
   
   .map-container {
-    height: 400px;
+    height: 450px; /* 400px에서 450px로 증가 */
+  }
+  
+  .openstreet-map {
+    height: calc(100% - 110px); /* 90px에서 110px로 조정 */
   }
   
   .map-info-overlay {
@@ -311,14 +375,14 @@
   }
   
   .office-details .address {
-    font-size: 0.9rem;
+    font-size: 0.9rem; /* 1rem에서 0.9rem으로 조정 */
   }
   
   .office-details .contact {
-    font-size: 0.8rem;
+    font-size: 0.85rem; /* 0.9rem에서 0.85rem으로 조정 */
   }
   
   .office-details .note {
-    font-size: 0.75rem;
+    font-size: 0.75rem; /* 0.8rem에서 0.75rem으로 조정 */
   }
 }
