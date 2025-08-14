@@ -1,6 +1,87 @@
 // ===== 문의 페이지 전용 JavaScript =====
 
 document.addEventListener('DOMContentLoaded', function() {
+    // 스팸 방지: 페이지 로드 시간 기록
+    const pageLoadTime = Date.now();
+    const timestampField = document.getElementById('timestamp');
+    if (timestampField) {
+        timestampField.value = pageLoadTime;
+    }
+    
+    // 캡차 초기화
+    let currentCaptcha = '';
+    initCaptcha();
+    
+    // 캡차 새로고침 버튼 이벤트
+    const refreshBtn = document.getElementById('refreshCaptcha');
+    if (refreshBtn) {
+        refreshBtn.addEventListener('click', function() {
+            generateNewCaptcha();
+        });
+    }
+    
+    // 캡차 초기화 함수
+    function initCaptcha() {
+        generateNewCaptcha();
+    }
+    
+    // 새로운 캡차 생성 함수
+    function generateNewCaptcha() {
+        // 5자리 랜덤 숫자 생성
+        let captcha = '';
+        
+        for (let i = 0; i < 5; i++) {
+            captcha += Math.floor(Math.random() * 10);
+        }
+        
+        currentCaptcha = captcha;
+        
+        // 화면에 표시 (각 숫자마다 다른 스타일 적용)
+        const captchaDisplay = document.getElementById('captchaNumber');
+        if (captchaDisplay) {
+            captchaDisplay.innerHTML = '';
+            
+            // 각 숫자를 span으로 감싸고 랜덤 스타일 적용
+            for (let i = 0; i < captcha.length; i++) {
+                const span = document.createElement('span');
+                span.textContent = captcha[i];
+                
+                // 더 강한 랜덤 회전 (-25도 ~ +25도)
+                const rotation = (Math.random() - 0.5) * 50;
+                // 더 강한 랜덤 기울기 (-20도 ~ +20도)
+                const skew = (Math.random() - 0.5) * 40;
+                // 랜덤 색상 변화 (더 다양하게)
+                const colorVariation = Math.random() * 0.5 - 0.25;
+                // 랜덤 크기 변화
+                const scaleVariation = 0.8 + Math.random() * 0.4; // 0.8 ~ 1.2배
+                // 랜덤 Y축 이동
+                const yOffset = (Math.random() - 0.5) * 8; // -4px ~ +4px
+                
+                span.style.setProperty('--rotation', `${rotation}deg`);
+                span.style.setProperty('--skew', `${skew}deg`);
+                span.style.color = `rgb(${51 + colorVariation * 100}, ${51 + colorVariation * 100}, ${51 + colorVariation * 100})`;
+                span.style.transform = `rotate(${rotation}deg) skew(${skew}deg) scale(${scaleVariation}) translateY(${yOffset}px)`;
+                
+                captchaDisplay.appendChild(span);
+            }
+        }
+        
+        // 입력 필드 초기화
+        const captchaInput = document.getElementById('spam_check');
+        if (captchaInput) {
+            captchaInput.value = '';
+        }
+        
+        // 애니메이션 효과
+        const display = document.getElementById('captchaDisplay');
+        if (display) {
+            display.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                display.style.transform = 'scale(1)';
+            }, 100);
+        }
+    }
+    
     // 네비게이션 요소들
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
@@ -92,8 +173,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 formObject[key] = value;
             });
             
+            // 스팸 방지 검증
+            if (!validateSpamProtection(formObject)) {
+                return;
+            }
+            
             // 필수 필드 검증
-            const requiredFields = ['name', 'email', 'phone', 'subject', 'message', 'privacy'];
+            const requiredFields = ['name', 'email', 'phone', 'subject', 'message', 'privacy', 'spam_check', 'human_check'];
             const missingFields = [];
             
             requiredFields.forEach(field => {
@@ -126,6 +212,58 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // 스팸 방지 검증 함수
+    function validateSpamProtection(formData) {
+        // 1. Honeypot 필드 검증 (웹사이트 필드가 채워져 있으면 스팸)
+        if (formData.website && formData.website.trim() !== '') {
+            console.log('스팸 감지: Honeypot 필드가 채워짐');
+            return false;
+        }
+        
+        // 2. 캡차 검증
+        if (formData.spam_check !== currentCaptcha) {
+            alert('캡차 숫자를 정확히 입력해주세요.');
+            // 캡차 새로고침
+            generateNewCaptcha();
+            return false;
+        }
+        
+        // 3. 시간 기반 검증 (너무 빠른 제출은 스팸일 가능성)
+        const currentTime = Date.now();
+        const submitTime = parseInt(formData.timestamp) || 0;
+        const timeDiff = currentTime - submitTime;
+        
+        // 5초 이내 제출은 스팸으로 간주
+        if (timeDiff < 5000) {
+            console.log('스팸 감지: 너무 빠른 제출');
+            alert('잠시 후 다시 시도해주세요.');
+            return false;
+        }
+        
+        // 4. 키워드 기반 스팸 필터링
+        const spamKeywords = ['viagra', 'casino', 'loan', 'credit', 'buy now', 'click here', 'free money'];
+        const messageText = (formData.message || '').toLowerCase();
+        const subjectText = (formData.subject || '').toLowerCase();
+        
+        for (const keyword of spamKeywords) {
+            if (messageText.includes(keyword) || subjectText.includes(keyword)) {
+                console.log('스팸 감지: 의심스러운 키워드 발견');
+                return false;
+            }
+        }
+        
+        // 5. 이메일 도메인 검증 (일반적인 스팸 도메인 차단)
+        const spamDomains = ['spam.com', 'test.com', 'example.com'];
+        const emailDomain = formData.email.split('@')[1]?.toLowerCase();
+        
+        if (spamDomains.includes(emailDomain)) {
+            console.log('스팸 감지: 의심스러운 이메일 도메인');
+            return false;
+        }
+        
+        return true;
+    }
+    
     // 폼 제출 함수
     function submitForm(formData) {
         // 로딩 상태 표시
@@ -135,27 +273,46 @@ document.addEventListener('DOMContentLoaded', function() {
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 전송 중...';
         submitBtn.disabled = true;
         
-        // 이메일로 전송하는 로직
-        const emailBody = `
-문의자 정보:
-- 이름: ${formData.name}
-- 회사명: ${formData.company || '미입력'}
-- 이메일: ${formData.email}
-- 연락처: ${formData.phone}
-- 관심 서비스: ${formData.service || '미선택'}
-
-문의 내용:
-- 제목: ${formData.subject}
-- 내용: ${formData.message}
-
-문의 시간: ${new Date().toLocaleString('ko-KR')}
-        `;
-        
-        // mailto 링크로 이메일 클라이언트 열기
-        const mailtoLink = `mailto:contact@prilaser.com?subject=PRILASER 문의: ${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(emailBody)}`;
-        
-        // 새 창에서 이메일 클라이언트 열기
-        window.open(mailtoLink, '_blank');
+                 // Formspree로 데이터 전송 (prilaser@daum.net으로 수신)
+         fetch('https://formspree.io/f/xpzgwqjq', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                name: formData.name,
+                company: formData.company || '미입력',
+                email: formData.email,
+                phone: formData.phone,
+                service: formData.service || '미선택',
+                subject: formData.subject,
+                message: formData.message,
+                timestamp: new Date().toLocaleString('ko-KR')
+            })
+        })
+        .then(response => {
+            if (response.ok) {
+                // 성공 메시지
+                alert('문의가 성공적으로 전송되었습니다. 빠른 시일 내에 답변드리겠습니다.');
+                
+                // 폼 초기화
+                inquiryForm.reset();
+                
+                // CAPTCHA 새로고침
+                generateCaptcha();
+            } else {
+                throw new Error('전송 실패');
+            }
+        })
+        .catch(error => {
+            console.error('전송 오류:', error);
+            alert('전송 중 오류가 발생했습니다. 다시 시도해주세요.');
+        })
+        .finally(() => {
+            // 버튼 상태 복원
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        });
         
         // 개발용: 콘솔에 문의 내용 출력
         console.log('=== PRILASER 문의 내용 ===');
@@ -172,16 +329,6 @@ document.addEventListener('DOMContentLoaded', function() {
             문의시간: new Date().toLocaleString('ko-KR')
         });
         console.log('========================');
-        
-        // 성공 메시지
-        alert('문의가 성공적으로 전송되었습니다. 빠른 시일 내에 답변드리겠습니다.');
-        
-        // 폼 초기화
-        inquiryForm.reset();
-        
-        // 버튼 상태 복원
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
     }
 
     // 폼 필드 실시간 검증

@@ -174,14 +174,14 @@ function initMap() {
                 <i class="fas fa-map-marker-alt" style="color: #dc3545; margin-right: 8px;"></i>
                 경기도 화성시 향남읍 구문천리 929-7번지
             </p>
-            <p style="margin: 8px 0; font-size: 13px; color: #555;">
-                <i class="fas fa-phone" style="color: #dc3545; margin-right: 8px;"></i>
-                T. 031-123-4567
-            </p>
-            <p style="margin: 8px 0; font-size: 13px; color: #555;">
-                <i class="fas fa-fax" style="color: #dc3545; margin-right: 8px;"></i>
-                F. 031-123-4568
-            </p>
+                                <p style="margin: 8px 0; font-size: 13px; color: #555;">
+                        <i class="fas fa-phone" style="color: #dc3545; margin-right: 8px;"></i>
+                        T. 031-352-2816
+                    </p>
+                    <p style="margin: 8px 0; font-size: 13px; color: #555;">
+                        <i class="fas fa-fax" style="color: #dc3545; margin-right: 8px;"></i>
+                        F. 031-352-2836
+                    </p>
         </div>
     `;
     
