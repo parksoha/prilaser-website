@@ -68,7 +68,7 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
   letter-spacing: 3px;
   opacity: 0;
   transform: translateY(30px);
-  animation: textFadeInUp 1s ease-out 0.5s forwards;
+  animation: textFadeInUp 0.6s ease-out 0.2s forwards;
 }
 
 .page-header p {
@@ -82,7 +82,7 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
   line-height: 1.6;
   opacity: 0;
   transform: translateY(30px);
-  animation: textFadeInUp 1s ease-out 0.8s forwards;
+  animation: textFadeInUp 0.6s ease-out 0.4s forwards;
 }
 
 @keyframes textFadeInUp {
